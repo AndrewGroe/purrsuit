@@ -1,6 +1,7 @@
 <template>
   <div class="pet_list">
     <pet />
+    {{pets}}
   </div>
 </template>
 
@@ -20,7 +21,6 @@ export default {
   },
   mounted () {
     this.pets = axios.post('/functions/petfinder')
-    console.log(this.pets)
   },
   methods: {
 
