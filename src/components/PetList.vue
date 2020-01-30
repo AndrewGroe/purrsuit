@@ -20,12 +20,14 @@ export default {
     }
   },
   mounted () {
-    axios
-      .post('/functions/petfinder')
-      .then(response => (this.pets = response))
+    this.getPets()
   },
   methods: {
-
+    getPets () {
+      axios
+        .get('.netlify/functions/petfinder')
+        .then(response => (this.pets = response))
+    }
   }
 }
 </script>

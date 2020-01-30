@@ -25,7 +25,6 @@ exports.handler = async function (event, context) {
    * fetches all pets from petfinder API
    */
   async function getPets (token) {
-    console.log(token)
     const AuthStr = 'Bearer '.concat(token)
     const response = await axios.get('https://api.petfinder.com/v2/animals', { headers: { Authorization: AuthStr } })
     return response.data.animals
