@@ -1,8 +1,8 @@
 {
-  "name": "token-hider",
+  "name": "petfinder",
   "version": "1.0.0",
   "description": "netlify functions:create - how to hide API tokens from your users",
-  "main": "token-hider.js",
+  "main": "petfinder.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,6 +16,5 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
-    "qs": "^6.7.0"
   }
 }
