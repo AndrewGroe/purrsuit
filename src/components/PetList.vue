@@ -20,7 +20,9 @@ export default {
     }
   },
   mounted () {
-    this.pets = axios.post('/functions/petfinder')
+    axios
+      .post('/functions/petfinder')
+      .then(response => (this.pets = response))
   },
   methods: {
 
