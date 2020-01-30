@@ -7,6 +7,7 @@
 <script>
 
 import Pet from './Pet.vue'
+import axios from 'axios'
 
 export default {
   name: 'PetList',
@@ -18,7 +19,8 @@ export default {
     }
   },
   mounted () {
-
+    this.pets = axios.post('/functions/petfinder')
+    console.log(this.pets)
   },
   methods: {
 
