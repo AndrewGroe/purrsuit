@@ -1,7 +1,10 @@
 <template>
   <div class="pet_list">
-    <pet />
-    {{pets}}
+    <pet
+      v-for="pet in pets"
+      :key="pet.id"
+      :pet="pet"
+    />
   </div>
 </template>
 
@@ -26,7 +29,7 @@ export default {
     getPets () {
       axios
         .get('.netlify/functions/petfinder')
-        .then(response => (this.pets = response))
+        .then(response => (this.pets = response.data))
     }
   }
 }
