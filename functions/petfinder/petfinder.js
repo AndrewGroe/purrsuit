@@ -1,4 +1,4 @@
-const axios = require('./node_modules/axios')
+const axios = require('./axios')
 
 exports.handler = async function (event, context) {
   let userToken = null
