@@ -1,14 +1,27 @@
 <template>
-  <div class="hello">
-
+  <div class="pet_list">
+    <pet />
   </div>
 </template>
 
 <script>
+
+import Pet from './Pet.vue'
+
 export default {
   name: 'PetList',
-  props: {
-    msg: String
+  components: { Pet },
+  data () {
+    return {
+      pets: [],
+      images: []
+    }
+  },
+  mounted () {
+
+  },
+  methods: {
+
   }
 }
 </script>
