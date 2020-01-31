@@ -1,14 +1,14 @@
 const axios = require('axios')
 
 exports.handler = async function (event, context) {
-  let userToken = null
-
+  const BASE_URL = 'https://api.petfinder.com/v2/animals'
+  const AUTH_URL = 'https://api.petfinder.com/v2/oauth2/token'
   const data = {
     grant_type: 'client_credentials',
     client_id: process.env.PETFINDER_CLIENT_ID,
     client_secret: process.env.PETFINDER_CLIENT_SECRET
   }
-
+  let userToken = null
   /**
    * Checks if user has a token
    * if not, requests and returns one from petfinder API
@@ -16,7 +16,7 @@ exports.handler = async function (event, context) {
   async function auth () {
     if (userToken === null) {
       console.log('fetching token...')
-      const newToken = await axios.post('https://api.petfinder.com/v2/oauth2/token', data)
+      const newToken = await axios.post(AUTH_URL, data)
       return newToken.data.access_token
     } return userToken
   }
@@ -26,7 +26,7 @@ exports.handler = async function (event, context) {
    */
   async function getPets (token) {
     const AuthStr = 'Bearer '.concat(token)
-    const response = await axios.get('https://api.petfinder.com/v2/animals', { headers: { Authorization: AuthStr } })
+    const response = await axios.get(BASE_URL, { headers: { Authorization: AuthStr } })
     return response.data.animals
   }
 
