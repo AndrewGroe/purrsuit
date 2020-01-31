@@ -7,11 +7,15 @@
     >
       <img :src='pet.photos[0].small'>
     </div>
-
-    <h3 class="pet__name">{{ pet.name }}</h3>
-    <h5 class="pet__species">{{ pet.species }}</h5>
-    <span class="pet__breed">{{ pet.breeds.primary }} {{ pet.breeds.secondary}}</span>
-    <div class="pet__age">{{ pet.age }}</div>
+    <div class="pet__details">
+      <h3 class="pet__name">{{ pet.name }}</h3>
+      <div class="pet__species">{{ pet.species }}</div>
+      <div class="pet__gender">{{pet.gender}}</div>
+      <span class="pet__breed">Breed: {{ pet.breeds.primary }}</span> <span v-if="pet.breeds.secondary"> + {{ pet.breeds.secondary}}</span>
+      <div class="pet__age">Age: {{ pet.age }}</div>
+      <div class="pet__location">{{pet.contact.address.city}}, {{pet.contact.address.state}}</div>
+      <a :href=pet.url>Learn More</a>
+    </div>
   </div>
 </template>
 
@@ -24,4 +28,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.pet {
+  margin: 4px;
+  background-color: blanchedalmond;
+  flex: 200px;
+  display: flex;
+  flex-direction: column;
+}
+.pet__details {
+}
 </style>
