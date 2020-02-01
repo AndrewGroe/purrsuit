@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="pet__details">
-      <h1 class="pet__name">{{ pet.name }}</h1>
+      <h2 class="pet__name">{{ pet.name }}</h2>
       <div class="pet__species">{{ pet.species }}</div>
       <span class="pet__breed">Breed: {{ pet.breeds.primary }}</span> <span v-if="pet.breeds.secondary"> + {{ pet.breeds.secondary}}</span>
     </div>
