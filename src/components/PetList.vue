@@ -1,21 +1,32 @@
 <template>
-  <div class="pet--list">
+  <div
+    class="pet--list"
+    v-if='pets.length'
+  >
+
     <pet
       v-for="pet in pets"
       :key="pet.id"
       :pet="pet"
     />
   </div>
+  <div
+    class="loading"
+    v-else
+  >
+    <loading />
+  </div>
 </template>
 
 <script>
 
 import Pet from './Pet.vue'
+import Loading from './Loading.vue'
 import axios from 'axios'
 
 export default {
   name: 'PetList',
-  components: { Pet },
+  components: { Pet, Loading },
   data () {
     return {
       pets: [],
