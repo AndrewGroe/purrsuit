@@ -52,5 +52,7 @@ export default {
   width: 100%;
   display: flex;
   flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
 }
 </style>
