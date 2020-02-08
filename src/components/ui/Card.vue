@@ -1,0 +1,69 @@
+<template>
+  <div class="card">
+    <div class="thumbnail">
+      <img :src="imgSrc" />
+    </div>
+    <div class="overlay">
+      <div class="content">
+        <slot></slot>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    imgSrc: String
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+
+  transition: 0.5s ease;
+}
+.card {
+  border-radius: 4%;
+  position: relative;
+  width: 200px;
+  height: 180px;
+  overflow: hidden;
+  background: black;
+
+  &:hover .overlay {
+    height: 100%;
+    opacity: 1;
+  }
+  &:hover img {
+    opacity: 0.4;
+  }
+}
+img {
+  background-color: black;
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.overlay {
+  opacity: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+}
+.content {
+  width: 100%;
+  color: white;
+  opacity: 1;
+  padding-top: 8%;
+}
+</style>>

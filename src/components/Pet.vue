@@ -1,39 +1,40 @@
 <template>
   <div class="pet">
-    <div class="card__top">
-      <!-- Thumbnail -->
-      <div
-        v-if="pet.photos && pet.photos.length"
-        class="pet__thumbnail"
-      >
-        <img :src='pet.photos[0].small'>
-      </div>
-      <div
-        v-else
-        class="pet__thumbnail"
-      >
-        <img src='https://cdn.pixabay.com/photo/2014/04/03/00/42/footprints-309158_960_720.png'>
-      </div>
-      <div class="card__top details">
+    <div v-if="pet.photos && pet.photos.length">
+      <card :imgSrc="pet.photos[0].small">
+
         <h3 class="pet__name">{{ pet.name }}</h3>
         <div class="pet__species">{{ pet.species }}</div>
         <div class="pet__gender">{{pet.gender}}</div>
-        <span class="pet__breed">Breed: {{ pet.breeds.primary }}</span> <span v-if="pet.breeds.secondary"> + {{ pet.breeds.secondary}}</span>
+        <span class="pet__breed">{{ pet.breeds.primary }}</span> <span v-if="pet.breeds.secondary"> + {{ pet.breeds.secondary}}</span>
         <div class="pet__age">Age: {{ pet.age }}</div>
         <div class="pet__location">{{pet.contact.address.city}}, {{pet.contact.address.state}}</div>
         <a :href=pet.url>Learn More</a>
-      </div>
+      </card>
+
     </div>
-    <div class="pet__details">
-      <h2 class="pet__name">{{ pet.name }}</h2>
-      <div class="pet__species">{{ pet.species }}</div>
-      <span class="pet__breed">Breed: {{ pet.breeds.primary }}</span> <span v-if="pet.breeds.secondary"> + {{ pet.breeds.secondary}}</span>
+    <div v-else>
+      <card imgSrc="https://cdn.pixabay.com/photo/2014/04/03/00/42/footprints-309158_960_720.png">
+
+        <h3 class="pet__name">{{ pet.name }}</h3>
+        <div class="pet__species">{{ pet.species }}</div>
+        <div class="pet__gender">{{pet.gender}}</div>
+        <span class="pet__breed">{{ pet.breeds.primary }}</span> <span v-if="pet.breeds.secondary"> + {{ pet.breeds.secondary}}</span>
+        <div class="pet__age">Age: {{ pet.age }}</div>
+        <div class="pet__location">{{pet.contact.address.city}}, {{pet.contact.address.state}}</div>
+        <a :href=pet.url>Learn More</a>
+      </card>
+
     </div>
+
   </div>
+
 </template>
 
 <script>
+import Card from './ui/Card.vue'
 export default {
+  components: { Card },
   props: {
     pet: Object
   }
