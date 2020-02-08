@@ -46,10 +46,13 @@ export default {
 img {
   background-color: black;
   opacity: 1;
+  position: absolute;
   display: block;
-  width: 100%;
-  object-fit: contain;
-  object-position: center;
+  top: 50%;
+  left: 50%;
+  min-height: 100%;
+  max-width: 100%;
+  transform: translate(-50%, -50%);
 }
 .overlay {
   opacity: 0;

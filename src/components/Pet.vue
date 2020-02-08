@@ -1,7 +1,7 @@
 <template>
   <div class="pet">
     <div v-if="pet.photos && pet.photos.length">
-      <card :imgSrc="pet.photos[0].full">
+      <card :imgSrc="pet.photos[0].large">
 
         <h3 class="pet__name">{{ pet.name }}</h3>
         <div class="pet__species">{{ pet.species }}</div>
@@ -47,7 +47,7 @@ export default {
   padding: 0;
 }
 .pet {
-  width: 180px;
+  width: 200px;
   min-height: 180px;
   margin: 4px;
   border-radius: 4px;
