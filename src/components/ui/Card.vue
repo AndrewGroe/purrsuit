@@ -48,7 +48,8 @@ img {
   opacity: 1;
   display: block;
   width: 100%;
-  height: auto;
+  object-fit: contain;
+  object-position: center;
 }
 .overlay {
   opacity: 0;

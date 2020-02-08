@@ -1,7 +1,7 @@
 <template>
   <div class="pet">
     <div v-if="pet.photos && pet.photos.length">
-      <card :imgSrc="pet.photos[0].large">
+      <card :imgSrc="pet.photos[0].full">
 
         <h3 class="pet__name">{{ pet.name }}</h3>
         <div class="pet__species">{{ pet.species }}</div>
