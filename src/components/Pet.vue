@@ -53,39 +53,5 @@ export default {
   border-radius: 4px;
   text-align: center;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-
-  &:hover .card__top {
-    min-height: 180px;
-
-    &.details {
-      display: block;
-    }
-  }
-  &:hover .pet__details {
-    display: none;
-  }
-}
-.card__top {
-  background-color: blanchedalmond;
-  width: 100%;
-  overflow: hidden;
-
-  &.details {
-    display: none;
-  }
-}
-.pet__details {
-  min-height: 180px;
-}
-.pet__thumbnail {
-  width: 90px;
-  height: 90px;
-  margin: 0 auto 15px auto;
-  & img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-  }
 }
 </style>
