@@ -9,7 +9,10 @@
         <span class="pet__breed">{{ pet.breeds.primary }}</span> <span v-if="pet.breeds.secondary"> + {{ pet.breeds.secondary}}</span>
         <div class="pet__age">Age: {{ pet.age }}</div>
         <div class="pet__location">{{pet.contact.address.city}}, {{pet.contact.address.state}}</div>
-        <a :href=pet.url>Learn More</a>
+        <a
+          target="_blank"
+          :href=pet.url
+        >Learn More</a>
       </card>
 
     </div>
@@ -22,7 +25,10 @@
         <span class="pet__breed">{{ pet.breeds.primary }}</span> <span v-if="pet.breeds.secondary"> + {{ pet.breeds.secondary}}</span>
         <div class="pet__age">Age: {{ pet.age }}</div>
         <div class="pet__location">{{pet.contact.address.city}}, {{pet.contact.address.state}}</div>
-        <a :href=pet.url>Learn More</a>
+        <a
+          target="_blank"
+          :href=pet.url
+        >Learn More</a>
       </card>
 
     </div>
