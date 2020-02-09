@@ -1,8 +1,12 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <h1 class="site-title">Purrsuit</h1>
+      <div class="router">
+        <router-link to="/">Home</router-link> |
+        <router-link to="/about">About</router-link>
+      </div>
+
     </div>
     <router-view />
   </div>
@@ -18,19 +22,29 @@
 }
 body {
   margin: 0;
-  background-color: grey;
+  background-color: #a6979c;
 }
 
 #nav {
-  padding: 30px;
-
+  width: 100%;
+  background-color: #6c6061;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
   a {
     font-weight: bold;
     color: #2c3e50;
 
     &.router-link-exact-active {
-      color: #42b983;
+      color: #dcc48e;
     }
+  }
+  h1 {
+    padding-left: 4%;
+    color: #7293a0;
+  }
+  .router {
+    padding-right: 4%;
   }
 }
 </style>
