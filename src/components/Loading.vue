@@ -1,13 +1,15 @@
 <template>
   <div class="loading">
     <div class="loader"></div>
-    <h2>Fetching Pets...</h2>
+    <h2>{{msg}}</h2>
   </div>
 </template>
 
 <script>
 export default {
-
+  props: {
+    msg: String
+  }
 }
 </script>
 
@@ -20,9 +22,9 @@ export default {
   width: 150px;
   height: 150px;
   margin: -75px 0 0 -75px;
-  border: 16px solid #f3f3f3;
+  border: 16px solid #a0f601;
   border-radius: 50%;
-  border-top: 16px solid #3498db;
+  border-top: 16px solid #768a92;
   width: 120px;
   height: 120px;
   -webkit-animation: spin 2s linear infinite;
