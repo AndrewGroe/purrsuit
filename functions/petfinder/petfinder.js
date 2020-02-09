@@ -43,7 +43,6 @@ exports.handler = async function (event, context) {
         link: element['_links']['self']['href']
       }
       petTypes.push(animal)
-      console.log(animal)
     })
     return petTypes
   }
