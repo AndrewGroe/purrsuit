@@ -1,7 +1,7 @@
 const axios = require('axios')
 
 exports.handler = async function (event, context) {
-  const BASE_URL = 'https://api.petfinder.com/'
+  const BASE_URL = 'https://api.petfinder.com/v2'
   const AUTH_URL = 'https://api.petfinder.com/v2/oauth2/token'
   const data = {
     grant_type: 'client_credentials',
@@ -22,29 +22,32 @@ exports.handler = async function (event, context) {
   }
 
   /**
-   * fetches all pets from petfinder API
-   */
-  async function getAllPets (token) {
-    const AuthStr = 'Bearer '.concat(token)
-    const response = await axios.get(BASE_URL, { headers: { Authorization: AuthStr } })
-    return response.data.animals
-  }
-
-  /**
- * fetches all pet TYPES from petfinder API
+ * fetches ALL PET TYPES
  */
   async function getPetTypes (token) {
     const AuthStr = 'Bearer '.concat(token)
-    const response = await axios.get(BASE_URL + 'v2/types', { headers: { Authorization: AuthStr } })
+    const response = await axios.get(BASE_URL + '/types', { headers: { Authorization: AuthStr } })
     const petTypes = []
     response.data.types.forEach(element => {
+      let url = element['_links']['self']['href']
+      // remove "/v2/types/"
+      url = url.substring(10)
       const animal = {
         name: element['name'],
-        link: element['_links']['self']['href']
+        link: url
       }
       petTypes.push(animal)
     })
     return petTypes
+  }
+
+  /**
+* fetches PETS BY TYPE
+*/
+  async function getPetsByType (token, path) {
+    const AuthStr = 'Bearer '.concat(token)
+    const response = await axios.get(BASE_URL + '/animals?type=' + path, { headers: { Authorization: AuthStr } })
+    return response.data.animals
   }
 
   /* Main Function */
@@ -55,7 +58,7 @@ exports.handler = async function (event, context) {
     let pets
     if (event.queryStringParameters.pets === 'types') {
       pets = await getPetTypes(userToken)
-    } else pets = await getAllPets(userToken)
+    } else pets = await getPetsByType(userToken, event.queryStringParameters.pets)
 
     return {
       statusCode: 200,
