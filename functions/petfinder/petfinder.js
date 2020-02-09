@@ -1,7 +1,7 @@
 const axios = require('axios')
 
 exports.handler = async function (event, context) {
-  const BASE_URL = 'https://api.petfinder.com/v2/animals'
+  const BASE_URL = 'https://api.petfinder.com/v2/'
   const AUTH_URL = 'https://api.petfinder.com/v2/oauth2/token'
   const data = {
     grant_type: 'client_credentials',
@@ -24,15 +24,34 @@ exports.handler = async function (event, context) {
   /**
    * fetches all pets from petfinder API
    */
-  async function getPets (token) {
+  async function getAllPets (token) {
     const AuthStr = 'Bearer '.concat(token)
     const response = await axios.get(BASE_URL, { headers: { Authorization: AuthStr } })
     return response.data.animals
   }
 
+  /**
+ * fetches all pet TYPES from petfinder API
+ */
+  async function getPetTypes (token) {
+    const AuthStr = 'Bearer '.concat(token)
+    const response = await axios.get(BASE_URL + 'types', { headers: { Authorization: AuthStr } })
+    const petTypes = []
+    response.data.types.forEach(element => {
+      petTypes.push(element['name'])
+    })
+    return petTypes
+  }
+
+  /* Main Function */
   try {
+    // Auth
     userToken = await auth()
-    const pets = await getPets(userToken)
+
+    let pets
+    if (event.queryStringParameters.pets === 'types') {
+      pets = await getPetTypes(userToken)
+    } else pets = await getAllPets(userToken)
 
     return {
       statusCode: 200,
