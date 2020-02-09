@@ -5,13 +5,18 @@
       class="pet-types"
       v-if="petTypes.length"
     >
-      <div
-        class="pet"
+      <router-link
         v-for="type in petTypes"
         :key='type.id'
+        class="pet"
+        :to="{ name: 'pets', params: type}"
       >
-        <h2>{{type}}</h2>
-      </div>
+        <div>
+          <h2>{{type.name}}</h2>
+        </div>
+
+      </router-link>
+
     </div>
     <div v-else>
       <loading msg='Fetching Available Pet Types...' />
@@ -64,9 +69,11 @@ export default {
   margin: 3%;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 
-  cursor: pointer;
   &:hover {
     background: #5e7078;
   }
+}
+a {
+  text-decoration: none;
 }
 </style>
