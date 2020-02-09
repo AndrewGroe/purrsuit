@@ -10,10 +10,7 @@
       :pet="pet"
     />
   </div>
-  <div
-    class="loading"
-    v-else
-  >
+  <div v-else>
     <loading />
   </div>
 </template>
