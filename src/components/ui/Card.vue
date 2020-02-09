@@ -33,14 +33,14 @@ export default {
   width: 200px;
   height: 180px;
   overflow: hidden;
-  background: black;
+  background: #a0f601;
 
   &:hover .overlay {
     height: 100%;
     opacity: 1;
   }
   &:hover img {
-    opacity: 0.4;
+    opacity: 0.5;
   }
 }
 img {
