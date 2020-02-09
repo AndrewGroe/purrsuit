@@ -3,7 +3,7 @@
     class="pet--list"
     v-if='pets.length'
   >
-
+    <h2>{{type.name}}</h2>
     <pet
       v-for="pet in pets"
       :key="pet.id"
@@ -27,7 +27,7 @@ export default {
   data () {
     return {
       pets: [],
-      images: []
+      type: this.$route.params
     }
   },
   mounted () {
@@ -36,7 +36,7 @@ export default {
   methods: {
     getPets () {
       axios
-        .get('.netlify/functions/petfinder')
+        .get('.netlify/functions/petfinder?pets=' + this.type.link)
         .then(response => (this.pets = response.data))
     }
   }
