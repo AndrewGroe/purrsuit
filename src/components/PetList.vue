@@ -3,7 +3,6 @@
     class="pet--list"
     v-if='pets.length'
   >
-    <h2>{{type.name}}</h2>
     <pet
       v-for="pet in pets"
       :key="pet.id"
