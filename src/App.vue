@@ -34,14 +34,17 @@ body {
   a {
     font-weight: bold;
     color: #2c3e50;
+    text-decoration: none;
 
     &.router-link-exact-active {
       color: #dcc48e;
+      text-decoration: underline;
     }
   }
   h1 {
     padding-left: 4%;
     color: #7293a0;
+    font-style: italic;
   }
   .router {
     padding-right: 4%;
