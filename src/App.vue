@@ -44,7 +44,7 @@ body {
   h1 {
     padding-left: 4%;
     color: #a0f601;
-    font-style: italic;
+    font-style: bold;
   }
   .router {
     padding-right: 4%;
