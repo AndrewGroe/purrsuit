@@ -22,28 +22,28 @@
 }
 body {
   margin: 0;
-  background-color: #a6979c;
+  background-color: #ecf0f1;
 }
 
 #nav {
   width: 100%;
-  background-color: #6c6061;
+  background-color: #5e7078;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: #fff;
     text-decoration: none;
 
     &.router-link-exact-active {
-      color: #dcc48e;
+      color: #a0f601;
       text-decoration: underline;
     }
   }
   h1 {
     padding-left: 4%;
-    color: #7293a0;
+    color: #a0f601;
     font-style: italic;
   }
   .router {
