@@ -25,11 +25,11 @@ export default {
   components: { Pet, Loading },
   data () {
     return {
-      type: this.$route.params
+      category: this.$route.params
     }
   },
   created () {
-    this.getPetsByCategory(this.type.link)
+    this.getPetsByCategory(this.category.link)
   },
   methods: {
     ...mapActions(['getPetsByCategory'])
