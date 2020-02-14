@@ -34,10 +34,10 @@ export default new Vuex.Store({
           .get('.netlify/functions/petfinder?pets=types')
           .then((response) => {
             context.commit('setCategories', response.data)
+            context.commit('setLoading', false)
           }
           )
-      }
-      context.commit('setLoading', false)
+      } else context.commit('setLoading', false)
     },
     getPetsByCategory (context, type) {
       context.commit('setLoading', true)
