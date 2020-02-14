@@ -1,12 +1,12 @@
 <template>
   <div class="home">
-    <h2 v-if="petTypes.length">What kind of pet are you looking for?</h2>
+    <h2 v-if="!loading">What kind of pet are you looking for?</h2>
     <div
       class="pet-types"
-      v-if="petTypes.length"
+      v-if="!loading"
     >
       <router-link
-        v-for="type in petTypes"
+        v-for="type in categories"
         :key='type.id'
         class="pet"
         :to="{ name: 'pets', params: type}"
@@ -26,27 +26,22 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { mapState, mapActions } from 'vuex'
 import Loading from '../components/Loading'
 
 export default {
   name: 'home',
   components: { Loading },
-  data () {
-    return {
-      petTypes: []
-    }
-  },
-  mounted () {
-    this.getPetTypes()
+  created () {
+    this.getAllCategories()
   },
   methods: {
-    getPetTypes () {
-      axios
-        .get('.netlify/functions/petfinder?pets=types')
-        .then(response => (this.petTypes = response.data))
-    }
-  }
+    ...mapActions(['getAllCategories'])
+  },
+  computed: mapState({
+    categories: state => state.categories,
+    loading: state => state.loading
+  })
 }
 </script>
 <style lang="scss" scoped>
