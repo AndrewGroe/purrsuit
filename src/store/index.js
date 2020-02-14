@@ -15,8 +15,8 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    toggleLoading (state) {
-      state.loading = !state.loading
+    setLoading (state, value) {
+      state.loading = value
     },
     setCategories (state, returnedCategories) {
       state.categories = returnedCategories
@@ -27,18 +27,24 @@ export default new Vuex.Store({
   },
   actions: {
     getAllCategories (context) {
+      context.commit('setLoading', true)
       axios
         .get('.netlify/functions/petfinder?pets=types')
         .then((response) => {
           context.commit('setCategories', response.data)
-          context.commit('toggleLoading')
+          context.commit('setLoading', false)
         }
         )
     },
     getPetsByCategory (context, type) {
+      context.commit('setLoading', true)
       axios
         .get('.netlify/functions/petfinder?pets=' + type)
-        .then(response => (context.commit('setPets', response.data)))
+        .then((response) => {
+          context.commit('setPets', response.data)
+          context.commit('setLoading', false)
+        }
+        )
     }
   },
   modules: {
