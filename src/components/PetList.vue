@@ -28,7 +28,7 @@ export default {
       type: this.$route.params
     }
   },
-  mounted () {
+  created () {
     this.getPetsByCategory(this.type.link)
   },
   methods: {
