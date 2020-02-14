@@ -29,13 +29,15 @@ export default new Vuex.Store({
     getAllCategories (context) {
       context.commit('setLoading', true)
       context.commit('setPets', [])
-      axios
-        .get('.netlify/functions/petfinder?pets=types')
-        .then((response) => {
-          context.commit('setCategories', response.data)
-          context.commit('setLoading', false)
-        }
-        )
+      if (context.state.categories.length === 0) {
+        axios
+          .get('.netlify/functions/petfinder?pets=types')
+          .then((response) => {
+            context.commit('setCategories', response.data)
+          }
+          )
+      }
+      context.commit('setLoading', false)
     },
     getPetsByCategory (context, type) {
       context.commit('setLoading', true)
