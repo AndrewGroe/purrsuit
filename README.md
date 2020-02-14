@@ -5,6 +5,7 @@ A demo can be found at https://purrsuit.netlify.com/
 
 #### Features include:
 * Vue.js
+* Vuex
 * Serverless Architecture
 * Netlify Functions (AWS Lambda)
 * Axios for AJAX requests
