@@ -2,24 +2,24 @@
   <div class="home">
     <h2 v-if="!loading">What kind of pet are you looking for?</h2>
     <div
-      class="pet-types"
+      class="pet-categories"
       v-if="!loading"
     >
       <router-link
-        v-for="type in categories"
-        :key='type.id'
+        v-for="category in categories"
+        :key='category.id'
         class="pet"
-        :to="{ name: 'pets', params: type}"
+        :to="{ name: 'pets', params: category}"
       >
         <div>
-          <h2>{{type.name}}</h2>
+          <h2>{{category.name}}</h2>
         </div>
 
       </router-link>
 
     </div>
     <div v-else>
-      <loading msg='Fetching Available Pet Types...' />
+      <loading msg='Fetching Available Pet Categories...' />
     </div>
 
   </div>
@@ -48,7 +48,7 @@ export default {
 * {
   transition: 0.5s ease;
 }
-.pet-types {
+.pet-categories {
   width: 100%;
   display: flex;
   flex-flow: row wrap;
