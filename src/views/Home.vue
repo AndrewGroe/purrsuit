@@ -5,17 +5,17 @@
       class="pet-categories"
       v-if="!loading"
     >
-      <router-link
+      <div
         v-for="category in categories"
         :key='category.id'
         class="pet"
-        :to="{ name: 'pets', params: category}"
+        @click="petSelected(category)"
       >
         <div>
           <h2>{{category.name}}</h2>
         </div>
 
-      </router-link>
+      </div>
 
     </div>
     <div v-else>
@@ -36,7 +36,12 @@ export default {
     this.getAllCategories()
   },
   methods: {
-    ...mapActions(['getAllCategories'])
+    ...mapActions(['getAllCategories', 'setCurrentCategory', 'setCurrentPage']),
+    petSelected (category) {
+      this.setCurrentCategory(category)
+      this.setCurrentPage(1)
+      this.$router.push('pets/' + category.slug + '/1')
+    }
   },
   computed: mapState({
     categories: state => state.categories,
@@ -63,12 +68,10 @@ export default {
   background: #768a92;
   margin: 3%;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 
   &:hover {
     background: #5e7078;
   }
-}
-a {
-  text-decoration: none;
 }
 </style>

@@ -11,7 +11,7 @@ const routes = [
     component: Home
   },
   {
-    path: '/pets',
+    path: '/pets/:category/:page',
     name: 'pets',
     props: true,
     // route level code-splitting

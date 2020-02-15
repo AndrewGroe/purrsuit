@@ -23,18 +23,15 @@ import Loading from './Loading.vue'
 export default {
   name: 'PetList',
   components: { Pet, Loading },
-  data () {
-    return {
-      category: this.$route.params
-    }
-  },
   created () {
-    this.getPetsByCategory(this.category.link)
+    this.getPetsByCategory()
   },
   methods: {
     ...mapActions(['getPetsByCategory'])
   },
   computed: mapState({
+    category: state => state.currentCategory,
+    page: state => state.currentPage,
     pets: state => state.pets,
     loading: state => state.loading
   })
