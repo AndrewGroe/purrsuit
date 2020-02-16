@@ -11,10 +11,22 @@ const routes = [
     component: Home
   },
   {
-    path: '/pets/:category/:page',
+    path: '/pets',
     name: 'pets',
     props: true,
-    component: () => import('../views/Pets.vue')
+    component: () => import('../views/Pets.vue'),
+    children: [
+      {
+        // PetCategories will be rendered inside the Pets <router-view>
+        // when /pets/categories is matched
+        path: 'categories',
+        component: () => import('../components/PetCategories.vue')
+      },
+      {
+        path: 'categories/:category/:page',
+        component: () => import('../components/PetList.vue')
+      }
+    ]
   },
   {
     path: '/about',
