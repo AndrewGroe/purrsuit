@@ -34,7 +34,7 @@ exports.handler = async function (event, context) {
       url = url.substring(10)
       const animal = {
         name: element['name'],
-        link: url
+        slug: url
       }
       petTypes.push(animal)
     })

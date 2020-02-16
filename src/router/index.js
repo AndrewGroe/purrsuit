@@ -14,18 +14,24 @@ const routes = [
     path: '/pets',
     name: 'pets',
     props: true,
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Pets.vue')
+    component: () => import('../views/Pets.vue'),
+    children: [
+      {
+        // PetCategories will be rendered inside the Pets <router-view>
+        // when /pets/categories is matched
+        path: 'categories',
+        component: () => import('../components/PetCategories.vue')
+      },
+      {
+        path: 'categories/:category/:page',
+        component: () => import('../components/PetList.vue')
+      }
+    ]
   },
   {
     path: '/about',
     name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import('../views/About.vue')
   }
 ]
 
