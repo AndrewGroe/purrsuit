@@ -1,18 +1,13 @@
 <template>
   <div class="pets">
-    <PetList />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import PetList from '@/components/PetList.vue'
 
 export default {
-  name: 'pets',
-  components: {
-
-    PetList
-  }
+  name: 'pets'
 }
 </script>
 
