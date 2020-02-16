@@ -41,7 +41,7 @@ export default new Vuex.Store({
       context.commit('setPets', [])
       if (context.state.categories.length === 0) {
         axios
-          .get('.netlify/functions/petfinder?pets=types')
+          .get('/.netlify/functions/petfinder?pets=types')
           .then((response) => {
             context.commit('setCategories', response.data)
             context.commit('setLoading', false)
