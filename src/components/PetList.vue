@@ -3,6 +3,7 @@
     class="pet--list"
     v-if='pets.length'
   >
+    <h2>{{category}}</h2>
     <pet
       v-for="pet in pets"
       :key="pet.id"
@@ -23,14 +24,11 @@ import Loading from './Loading.vue'
 export default {
   name: 'PetList',
   components: { Pet, Loading },
-  created () {
-    this.getPetsByCategory()
-  },
   methods: {
-    ...mapActions(['getPetsByCategory'])
+    ...mapActions(['setCurrentPage'])
   },
   computed: mapState({
-    category: state => state.currentCategory,
+    category: state => state.currentPageTitle,
     page: state => state.currentPage,
     pets: state => state.pets,
     loading: state => state.loading
