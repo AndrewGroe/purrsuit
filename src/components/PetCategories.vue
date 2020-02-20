@@ -25,19 +25,13 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 import Loading from '../components/Loading'
 
 export default {
   components: { Loading },
-  created () {
-    this.getAllCategories()
-  },
   methods: {
-    ...mapActions(['getAllCategories', 'setCurrentCategory', 'setCurrentPage']),
     petSelected (category) {
-      this.setCurrentCategory(category)
-      this.setCurrentPage(1)
       this.$router.push('/pets/categories/' + category.slug + '/1')
     }
   },
