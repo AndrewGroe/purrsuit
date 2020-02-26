@@ -1,14 +1,14 @@
 <template>
-  <div
-    class="pet--list"
-    v-if='pets.length'
-  >
+
+  <div v-if='pets.length'>
     <h2>{{category}}</h2>
-    <pet
-      v-for="pet in pets"
-      :key="pet.id"
-      :pet="pet"
-    />
+    <div class="pet--list">
+      <pet
+        v-for="pet in pets"
+        :key="pet.id"
+        :pet="pet"
+      />
+    </div>
   </div>
   <div v-else>
     <loading />
