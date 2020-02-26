@@ -14,6 +14,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/styles/_vars.scss";
+
 .loader {
   position: absolute;
   left: 50%;
@@ -22,9 +24,9 @@ export default {
   width: 150px;
   height: 150px;
   margin: -75px 0 0 -75px;
-  border: 16px solid #a0f601;
+  border: 16px solid $light-green;
   border-radius: 50%;
-  border-top: 16px solid #768a92;
+  border-top: 16px solid $dark-blue;
   width: 120px;
   height: 120px;
   -webkit-animation: spin 2s linear infinite;

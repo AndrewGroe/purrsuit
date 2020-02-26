@@ -20,6 +20,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/styles/_vars.scss";
+
 * {
   margin: 0;
   padding: 0;
@@ -33,7 +35,7 @@ export default {
   width: 200px;
   height: 180px;
   overflow: hidden;
-  background: #a0f601;
+  background: $light-green;
 
   &:hover .overlay {
     height: 100%;
@@ -44,7 +46,7 @@ export default {
   }
 }
 img {
-  background-color: black;
+  background-color: $dark-blue;
   opacity: 1;
   position: absolute;
   display: block;

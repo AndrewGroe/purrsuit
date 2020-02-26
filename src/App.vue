@@ -14,6 +14,8 @@
 </template>
 
 <style lang="scss">
+@import "styles/_vars.scss";
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -23,28 +25,28 @@
 }
 body {
   margin: 0;
-  background-color: #ecf0f1;
+  background-color: $bg-color;
 }
 
 #nav {
   width: 100%;
-  background-color: #5e7078;
+  background-color: $light-green;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   a {
     font-weight: bold;
-    color: #fff;
+    color: $dark-blue;
     text-decoration: none;
 
     &.router-link-exact-active {
-      color: #a0f601;
+      color: #fff;
       text-decoration: underline;
     }
   }
   h1 {
     padding-left: 4%;
-    color: #a0f601;
+    color: #fff;
     font-style: bold;
   }
   .router {

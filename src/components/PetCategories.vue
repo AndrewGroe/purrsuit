@@ -42,6 +42,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import "@/styles/_vars.scss";
+
 * {
   transition: 0.5s ease;
 }
@@ -57,13 +59,13 @@ export default {
   width: 200px;
   height: 180px;
   border-radius: 4%;
-  background: #768a92;
+  background: $dark-blue;
   margin: 3%;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 
   &:hover {
-    background: #5e7078;
+    background: $light-green;
   }
 }
 </style>
