@@ -3,7 +3,10 @@
     <div id="nav">
       <h1 class="site-title">Purrsuit</h1>
       <div class="router">
-        <router-link to="/">Home</router-link> |
+        <router-link
+          to="/"
+          exact
+        >Home</router-link> |
         <router-link to="/pets/categories">Pets</router-link> |
         <router-link to="/about">About</router-link>
       </div>
@@ -39,7 +42,7 @@ body {
     color: $dark-blue;
     text-decoration: none;
 
-    &.router-link-exact-active {
+    &.router-link-active {
       color: #fff;
       text-decoration: underline;
     }
