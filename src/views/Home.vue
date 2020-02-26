@@ -46,6 +46,9 @@ export default {
   flex: 1 1 auto;
   align-self: flex-start;
 }
+.bg-image {
+  max-width: 100%;
+}
 
 .cta {
   flex: 0 1 auto;
