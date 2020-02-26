@@ -74,4 +74,26 @@ export default {
 .subtitle {
   font-style: italic;
 }
+
+// Media Queries
+@media (max-width: 700px) {
+  .home {
+    display: block;
+  }
+
+  .bg-image {
+    width: 100%;
+  }
+
+  .cta {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-bottom: 4%;
+  }
+}
 </style>
