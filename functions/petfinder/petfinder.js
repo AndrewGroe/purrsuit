@@ -46,7 +46,13 @@ exports.handler = async function (event, context) {
 */
   async function getPetsByType (token, path) {
     const AuthStr = 'Bearer '.concat(token)
-    const response = await axios.get(BASE_URL + '/animals?type=' + path, { headers: { Authorization: AuthStr } })
+    const response = await axios.get(BASE_URL + '/animals', {
+      params: {
+        type: path.pets,
+        location: path.location
+      },
+      headers: { Authorization: AuthStr }
+    })
     return response.data.animals
   }
 
@@ -58,7 +64,7 @@ exports.handler = async function (event, context) {
     let pets
     if (event.queryStringParameters.pets === 'types') {
       pets = await getPetTypes(userToken)
-    } else pets = await getPetsByType(userToken, event.queryStringParameters.pets)
+    } else pets = await getPetsByType(userToken, event.queryStringParameters)
 
     return {
       statusCode: 200,

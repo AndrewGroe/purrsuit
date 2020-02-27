@@ -1,5 +1,13 @@
 <template>
   <div class="pet-categories">
+
+    <div
+      class="location-modal"
+      v-if="this.userLocation === ''"
+    >
+      <LocationModal />
+    </div>
+
     <h2 v-if="!loading">What kind of pet are you looking for?</h2>
     <div
       class="pet-categories"
@@ -27,9 +35,10 @@
 <script>
 import { mapState } from 'vuex'
 import Loading from '../components/Loading'
+import LocationModal from '../components/LocationModal'
 
 export default {
-  components: { Loading },
+  components: { Loading, LocationModal },
   methods: {
     petSelected (category) {
       this.$router.push('/pets/categories/' + category.slug + '/1')
@@ -37,7 +46,8 @@ export default {
   },
   computed: mapState({
     categories: state => state.categories,
-    loading: state => state.loading
+    loading: state => state.loading,
+    userLocation: state => state.userLocation
   })
 }
 </script>

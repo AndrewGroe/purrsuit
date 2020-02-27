@@ -20,7 +20,8 @@ export default new Vuex.Store({
     pets: [],
     currentCategory: '',
     currentPageTitle: '',
-    currentPage: 1
+    currentPage: 1,
+    userLocation: ''
   },
 
   mutations: {
@@ -41,6 +42,9 @@ export default new Vuex.Store({
     },
     setCurrentPageTitle (state, value) {
       state.currentPageTitle = value
+    },
+    setUserLocation (state, value) {
+      state.userLocation = value
     }
   },
 
@@ -48,17 +52,32 @@ export default new Vuex.Store({
     getAllCategories (context) {
       context.commit('setLoading', true)
       context.commit('setPets', [])
-      return axios
-        .get('/.netlify/functions/petfinder?pets=types')
-        .then((response) => {
-          context.commit('setCategories', response.data)
-          context.commit('setLoading', false)
-        })
+      if (context.state.userLocation === '' && localStorage.location) {
+        context.commit('setUserLocation', localStorage.location)
+      }
+      if (context.state.categories.length) {
+        context.commit('setLoading', false)
+      } else {
+        return axios
+          .get('/.netlify/functions/petfinder?pets=types')
+          .then((response) => {
+            context.commit('setCategories', response.data)
+            context.commit('setLoading', false)
+          })
+      }
     },
     getPetsByCategory (context) {
       context.commit('setLoading', true)
+      if (context.state.userLocation === '' && localStorage.location) {
+        context.commit('setUserLocation', localStorage.location)
+      }
       return axios
-        .get('/.netlify/functions/petfinder?pets=' + context.state.currentCategory)
+        .get('/.netlify/functions/petfinder', {
+          params: {
+            pets: context.state.currentCategory,
+            location: context.state.userLocation
+          }
+        })
         .then((response) => {
           context.commit('setPets', response.data)
           context.commit('setLoading', false)
@@ -73,6 +92,10 @@ export default new Vuex.Store({
     },
     setCurrentPage (context, value) {
       context.commit('setCurrentPage', value)
+    },
+    setUserLocation (context, value) {
+      localStorage.location = value
+      context.commit('setUserLocation', value)
     }
   },
   plugins: [formattedTitle]
