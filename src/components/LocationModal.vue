@@ -9,7 +9,10 @@
         v-model='location'
         placeholder="ex: Orlando, Florida"
       />
-      <button>Find me</button>
+      <button
+        class="geolocation-btn"
+        @click="getGeocode"
+      >Find me</button>
       <p>Valid inputs include city, state or postal code</p>
       <div class="modal-controls">
         <button
@@ -31,6 +34,14 @@ export default {
     }
   },
   mounted () {
+    // Check for Geolocation API
+    if ('geolocation' in navigator) {
+      /* geolocation is available */
+    } else {
+      /* geolocation IS NOT available */
+      document.querySelector('.geolocation-btn').setAttribute('style', 'visibility: hidden')
+    }
+
     // Handle Enter key press
     let input = document.querySelector('.location-input')
     input.addEventListener('keyup', function (event) {
@@ -40,7 +51,7 @@ export default {
     })
   },
   methods: {
-    ...mapActions(['setUserLocation'])
+    ...mapActions(['setUserLocation', 'getGeocode'])
   }
 }
 </script>

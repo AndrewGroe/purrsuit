@@ -49,6 +49,21 @@ export default new Vuex.Store({
   },
 
   actions: {
+
+    getGeocode (context) {
+      context.commit('setLoading', true)
+      navigator.geolocation.getCurrentPosition(function (position) {
+        axios.get('/.netlify/functions/geocode', {
+          params: {
+            coords: `${position.coords.latitude},${position.coords.longitude}`
+          }
+        }).then((response) => {
+          let zip = response.data.data.results[1].address_components[0].long_name
+          context.dispatch('setUserLocation', zip)
+        })
+      })
+    },
+
     getAllCategories (context) {
       context.commit('setLoading', true)
       context.commit('setPets', [])
@@ -96,6 +111,7 @@ export default new Vuex.Store({
     setUserLocation (context, value) {
       localStorage.location = value
       context.commit('setUserLocation', value)
+      context.commit('setLoading', false)
     }
   },
   plugins: [formattedTitle]
