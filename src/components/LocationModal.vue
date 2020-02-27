@@ -5,6 +5,7 @@
       <p>In order to display pets near you, please enter your desired search location below.</p>
 
       <input
+        class="location-input"
         v-model='location'
         placeholder="ex: Orlando, Florida"
       />
@@ -28,6 +29,15 @@ export default {
     return {
       location: ''
     }
+  },
+  mounted () {
+    // Handle Enter key press
+    let input = document.querySelector('.location-input')
+    input.addEventListener('keyup', function (event) {
+      if (event.keyCode === 13) {
+        document.querySelector('.confirm-btn').click()
+      }
+    })
   },
   methods: {
     ...mapActions(['setUserLocation'])
