@@ -53,7 +53,7 @@ exports.handler = async function (event, context) {
       },
       headers: { Authorization: AuthStr }
     })
-    return response.data.animals
+    return response.data
   }
 
   /* Main Function */
