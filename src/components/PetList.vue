@@ -1,13 +1,40 @@
 <template>
 
   <div v-if='pets.length'>
-    <h2>{{category}}</h2>
+    <div class="page-nav">
+      <div>Category: {{categoryTitle}}</div>
+      <div>Location: {{location}}</div>
+      <div class="pagination">
+        <button
+          v-if="page != 1"
+          @click="paginate('previous')"
+        >Previous</button>
+        page {{page}}/{{totalPages}}
+        <button
+          v-if="page != totalPages"
+          @click="paginate('next')"
+        >Next</button>
+      </div>
+    </div>
     <div class="pet--list">
       <pet
         v-for="pet in pets"
         :key="pet.id"
         :pet="pet"
       />
+    </div>
+    <div class="page-nav">
+      <div class="pagination">
+        <button
+          v-if="page != 1"
+          @click="paginate('previous')"
+        >Previous</button>
+        page {{page}}/{{totalPages}}
+        <button
+          v-if="page != totalPages"
+          @click="paginate('next')"
+        >Next</button>
+      </div>
     </div>
   </div>
   <div v-else>
@@ -25,13 +52,26 @@ export default {
   name: 'PetList',
   components: { Pet, Loading },
   methods: {
-    ...mapActions(['setCurrentPage'])
+    ...mapActions(['setCurrentPage', 'getPetsByCategory']),
+    paginate (page) {
+      let newPage
+      if (page === 'next') {
+        newPage = Number(this.page) + 1
+      } else newPage = Number(this.page) - 1
+
+      this.setCurrentPage(newPage)
+      this.getPetsByCategory()
+      this.$router.push(`/pets/categories/${this.category}/${newPage}`)
+    }
   },
   computed: mapState({
-    category: state => state.currentPageTitle,
+    categoryTitle: state => state.currentPageTitle,
+    category: state => state.currentCategory,
     page: state => state.currentPage,
+    totalPages: state => state.totalPages,
     pets: state => state.pets,
-    loading: state => state.loading
+    loading: state => state.loading,
+    location: state => state.userLocation
   })
 }
 </script>

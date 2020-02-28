@@ -90,6 +90,7 @@ export default new Vuex.Store({
     },
     getPetsByCategory (context) {
       context.commit('setLoading', true)
+      context.commit('setPets', [])
       if (context.state.userLocation === '' && localStorage.location) {
         context.commit('setUserLocation', localStorage.location)
       }
@@ -97,7 +98,8 @@ export default new Vuex.Store({
         .get('/.netlify/functions/petfinder', {
           params: {
             pets: context.state.currentCategory,
-            location: context.state.userLocation
+            location: context.state.userLocation,
+            page: context.state.currentPage
           }
         })
         .then((response) => {

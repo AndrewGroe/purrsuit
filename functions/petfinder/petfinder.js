@@ -49,7 +49,8 @@ exports.handler = async function (event, context) {
     const response = await axios.get(BASE_URL + '/animals', {
       params: {
         type: path.pets,
-        location: path.location
+        location: path.location,
+        page: path.page
       },
       headers: { Authorization: AuthStr }
     })
