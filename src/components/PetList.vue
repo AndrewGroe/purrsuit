@@ -84,4 +84,14 @@ export default {
   align-items: center;
   justify-content: center;
 }
+
+.pagination {
+  margin: 2% 0;
+  font-size: 1.1rem;
+
+  button {
+    font-size: 1.2rem;
+    border-radius: 8%;
+  }
+}
 </style>
