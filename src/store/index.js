@@ -21,6 +21,7 @@ export default new Vuex.Store({
     currentCategory: '',
     currentPageTitle: '',
     currentPage: 1,
+    totalPages: 0,
     userLocation: ''
   },
 
@@ -40,6 +41,9 @@ export default new Vuex.Store({
     setCurrentPage (state, value) {
       state.currentPage = value
     },
+    setTotalPages (state, value) {
+      state.totalPages = value
+    },
     setCurrentPageTitle (state, value) {
       state.currentPageTitle = value
     },
@@ -58,7 +62,10 @@ export default new Vuex.Store({
             coords: `${position.coords.latitude},${position.coords.longitude}`
           }
         }).then((response) => {
-          let zip = response.data.data.results[1].address_components[0].long_name
+          // eslint-disable-next-line quotes
+          let text = response.data.data.results[1].address_components.find(({ types }) => types[0] === "postal_code")
+
+          let zip = text.long_name
           context.dispatch('setUserLocation', zip)
         })
       })
@@ -94,7 +101,10 @@ export default new Vuex.Store({
           }
         })
         .then((response) => {
-          context.commit('setPets', response.data)
+          if (context.state.totalPages !== response.data.pagination.total_pages) {
+            context.dispatch('setTotalPages', response.data.pagination.total_pages)
+          }
+          context.commit('setPets', response.data.animals)
           context.commit('setLoading', false)
         }
         )
@@ -107,6 +117,9 @@ export default new Vuex.Store({
     },
     setCurrentPage (context, value) {
       context.commit('setCurrentPage', value)
+    },
+    setTotalPages (context, value) {
+      context.commit('setTotalPages', value)
     },
     setUserLocation (context, value) {
       localStorage.location = value
