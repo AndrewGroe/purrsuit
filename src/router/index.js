@@ -32,6 +32,7 @@ const routes = [
         path: 'categories/:category/:page',
         component: () => import('../components/PetList.vue'),
 
+        // Handles refreshes and URL navigation
         beforeEnter: (to, from, next) => {
           // Route & Store Match
           if (
