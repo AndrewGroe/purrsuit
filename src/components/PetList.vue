@@ -59,8 +59,6 @@ export default {
         newPage = Number(this.page) + 1
       } else newPage = Number(this.page) - 1
 
-      this.setCurrentPage(newPage)
-      this.getPetsByCategory()
       this.$router.push(`/pets/categories/${this.category}/${newPage}`)
     }
   },
@@ -72,7 +70,12 @@ export default {
     pets: state => state.pets,
     loading: state => state.loading,
     location: state => state.userLocation
-  })
+  }),
+  beforeRouteUpdate (to, from, next) {
+    this.setCurrentPage(to.params.page)
+    this.getPetsByCategory()
+    next()
+  }
 }
 </script>
 
