@@ -1,44 +1,49 @@
 <template>
-
-  <div v-if='pets.length'>
-    <div class="page-nav">
-      <div>Category: {{categoryTitle}}</div>
-      <div>Location: {{location}}</div>
-      <div class="pagination">
-        <button
-          v-if="page != 1"
-          @click="paginate('previous')"
-        >Previous</button>
-        page {{page}}/{{totalPages}}
-        <button
-          v-if="page != totalPages"
-          @click="paginate('next')"
-        >Next</button>
+  <div>
+    <transition name="component-fade">
+      <div v-if='pets.length'>
+        <div class="page-nav">
+          <div>Category: {{categoryTitle}}</div>
+          <div>Location: {{location}}</div>
+          <div class="pagination">
+            <button
+              v-if="page != 1"
+              @click="paginate('previous')"
+            >Previous</button>
+            page {{page}}/{{totalPages}}
+            <button
+              v-if="page != totalPages"
+              @click="paginate('next')"
+            >Next</button>
+          </div>
+        </div>
+        <div class="pet--list">
+          <pet
+            v-for="pet in pets"
+            :key="pet.id"
+            :pet="pet"
+          />
+        </div>
+        <div class="page-nav">
+          <div class="pagination">
+            <button
+              v-if="page != 1"
+              @click="paginate('previous')"
+            >Previous</button>
+            page {{page}}/{{totalPages}}
+            <button
+              v-if="page != totalPages"
+              @click="paginate('next')"
+            >Next</button>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="pet--list">
-      <pet
-        v-for="pet in pets"
-        :key="pet.id"
-        :pet="pet"
-      />
-    </div>
-    <div class="page-nav">
-      <div class="pagination">
-        <button
-          v-if="page != 1"
-          @click="paginate('previous')"
-        >Previous</button>
-        page {{page}}/{{totalPages}}
-        <button
-          v-if="page != totalPages"
-          @click="paginate('next')"
-        >Next</button>
+    </transition>
+    <transition name="component-fade">
+      <div v-if="loading">
+        <loading />
       </div>
-    </div>
-  </div>
-  <div v-else>
-    <loading />
+    </transition>
   </div>
 </template>
 
