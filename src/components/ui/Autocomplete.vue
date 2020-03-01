@@ -4,22 +4,21 @@
       class="input"
       v-model='input'
       placeholder="ex: Orlando, Florida"
-      list="suggestion-list"
-      @change="$emit('suggestion-selected', input)"
       @input="userInput(input)"
     />
-    <datalist
-      id="suggestion-list"
-      v-if="suggestions"
+    <div
+      v-if="suggestions && showSuggestions"
+      class="suggestions"
     >
-      <option
+      <div
         class="suggestion-item"
         v-for="suggestion in suggestions"
         :key="suggestion.id"
+        @click="suggestionSelected(suggestion)"
       >
         {{suggestion}}
-      </option>
-    </datalist>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -30,18 +29,46 @@ export default {
   },
   data () {
     return {
-      input: ''
+      input: '',
+      showSuggestions: false
     }
   },
   methods: {
     userInput (input) {
       if (input.length > 2) {
+        this.showSuggestions = true
         this.$emit('get-suggestions', input)
       }
+    },
+    suggestionSelected (suggestion) {
+      this.input = suggestion
+      this.showSuggestions = false
+      this.$emit('suggestion-selected', suggestion)
     }
   }
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+.suggestions {
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+
+  &:hover {
+    background-color: #e9e9e9;
+  }
+}
 </style>

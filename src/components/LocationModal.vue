@@ -8,7 +8,7 @@
         class="location-input"
         :suggestions="suggestions"
         v-on:get-suggestions="getAutocomplete"
-        v-on:suggestion-selected="setUserLocation"
+        v-on:suggestion-selected="locationSelected"
       />
 
       <button
@@ -34,7 +34,8 @@ export default {
   components: { Autocomplete },
   data () {
     return {
-      location: ''
+      location: '',
+      showModal: false
     }
   },
   mounted () {
@@ -55,7 +56,10 @@ export default {
     })
   },
   methods: {
-    ...mapActions(['setUserLocation', 'getGeocode', 'getAutocomplete'])
+    ...mapActions(['setUserLocation', 'getGeocode', 'getAutocomplete']),
+    locationSelected (selected) {
+      this.location = selected
+    }
   },
   computed: mapState({
     suggestions: state => state.locationSuggestions
