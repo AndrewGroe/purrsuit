@@ -11,7 +11,8 @@ exports.handler = async (event, context) => {
       params: {
         input: event.queryStringParameters.input,
         key: GCP_KEY,
-        types: '(regions)'
+        components: 'country:us',
+        types: '(cities)'
       },
       timeout: 1000 // milliseconds
     })

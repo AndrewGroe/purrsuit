@@ -22,7 +22,8 @@ export default new Vuex.Store({
     currentPageTitle: '',
     currentPage: 1,
     totalPages: 0,
-    userLocation: ''
+    userLocation: '',
+    locationSuggestions: []
   },
 
   mutations: {
@@ -49,11 +50,14 @@ export default new Vuex.Store({
     },
     setUserLocation (state, value) {
       state.userLocation = value
+    },
+    setLocationSuggestions (state, value) {
+      state.locationSuggestions = value
     }
   },
 
   actions: {
-
+    // Get zipcode from latitude and longitude
     getGeocode (context) {
       context.commit('setLoading', true)
       navigator.geolocation.getCurrentPosition(function (position) {
@@ -69,6 +73,22 @@ export default new Vuex.Store({
           context.dispatch('setUserLocation', zip)
         })
       })
+    },
+    getAutocomplete (context, value) {
+      return axios
+        .get('/.netlify/functions/autocomplete', {
+          params: {
+            input: value
+          }
+        })
+        .then((response) => {
+          let suggestions = []
+          response.data.data.forEach(element => {
+            let formattedText = `${element.terms[0].value}, ${element.terms[1].value}`
+            suggestions.push(formattedText)
+          })
+          context.commit('setLocationSuggestions', suggestions)
+        })
     },
 
     getAllCategories (context) {

@@ -4,11 +4,13 @@
       <h2>Location</h2>
       <p>In order to display pets near you, please enter your desired search location below.</p>
 
-      <input
+      <Autocomplete
         class="location-input"
-        v-model='location'
-        placeholder="ex: Orlando, Florida"
+        :suggestions="suggestions"
+        v-on:get-suggestions="getAutocomplete"
+        v-on:suggestion-selected="setUserLocation"
       />
+
       <button
         class="geolocation-btn"
         @click="getGeocode"
@@ -26,8 +28,10 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
+import Autocomplete from './ui/Autocomplete'
 export default {
+  components: { Autocomplete },
   data () {
     return {
       location: ''
@@ -51,8 +55,11 @@ export default {
     })
   },
   methods: {
-    ...mapActions(['setUserLocation', 'getGeocode'])
-  }
+    ...mapActions(['setUserLocation', 'getGeocode', 'getAutocomplete'])
+  },
+  computed: mapState({
+    suggestions: state => state.locationSuggestions
+  })
 }
 </script>
 
