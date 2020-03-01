@@ -4,7 +4,7 @@
       class="input"
       v-model='input'
       placeholder="ex: Orlando, Florida"
-      @input="userInput(input)"
+      type="text"
     />
     <div
       v-if="suggestions && showSuggestions"
@@ -34,7 +34,9 @@ export default {
     }
   },
   methods: {
-    userInput (input) {
+    userInput (e) {
+      let input = e.target.value
+
       if (input.length > 2) {
         this.showSuggestions = true
         this.$emit('get-suggestions', input)
@@ -45,6 +47,10 @@ export default {
       this.showSuggestions = false
       this.$emit('suggestion-selected', suggestion)
     }
+  },
+  mounted () {
+    const textInput = document.querySelector('.input')
+    textInput.addEventListener('input', this.userInput)
   }
 }
 </script>
