@@ -50,6 +50,7 @@ exports.handler = async function (event, context) {
       params: {
         type: path.pets,
         location: path.location,
+        distance: path.distance,
         page: path.page
       },
       headers: { Authorization: AuthStr }

@@ -23,6 +23,7 @@ export default new Vuex.Store({
     currentPage: 1,
     totalPages: 0,
     userLocation: '',
+    userDistance: 100,
     locationSuggestions: []
   },
 
@@ -53,6 +54,9 @@ export default new Vuex.Store({
     },
     setLocationSuggestions (state, value) {
       state.locationSuggestions = value
+    },
+    setUserDistance (state, value) {
+      state.userDistance = value
     }
   },
 
@@ -97,6 +101,9 @@ export default new Vuex.Store({
       if (context.state.userLocation === '' && localStorage.location) {
         context.commit('setUserLocation', localStorage.location)
       }
+      if (context.state.userDistance !== localStorage.distance) {
+        context.commit('setUserDistance', localStorage.distance)
+      }
       if (context.state.categories.length) {
         context.commit('setLoading', false)
       } else {
@@ -114,11 +121,15 @@ export default new Vuex.Store({
       if (context.state.userLocation === '' && localStorage.location) {
         context.commit('setUserLocation', localStorage.location)
       }
+      if (context.state.userDistance !== localStorage.distance) {
+        context.commit('setUserDistance', localStorage.distance)
+      }
       return axios
         .get('/.netlify/functions/petfinder', {
           params: {
             pets: context.state.currentCategory,
             location: context.state.userLocation,
+            distance: context.state.userDistance,
             page: context.state.currentPage
           }
         })
@@ -147,6 +158,10 @@ export default new Vuex.Store({
       localStorage.location = value
       context.commit('setUserLocation', value)
       context.commit('setLoading', false)
+    },
+    setUserDistance (context, value) {
+      localStorage.distance = value
+      context.commit('setUserDistance', value)
     }
   },
   plugins: [formattedTitle]

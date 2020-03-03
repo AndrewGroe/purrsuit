@@ -7,6 +7,7 @@
       <Autocomplete
         class="location-input"
         :suggestions="suggestions"
+        :location="location"
         v-on:get-suggestions="getAutocomplete"
         v-on:suggestion-selected="locationSelected"
       />
@@ -16,10 +17,18 @@
         @click="getGeocode"
       >Find me</button>
       <p>Valid inputs include city, state or postal code</p>
+
+      <label for="distances">Distance: </label>
+      <select
+        id="distances"
+        @change="distanceSelected"
+      >
+      </select>
+
       <div class="modal-controls">
         <button
           class="confirm-btn"
-          @click="setUserLocation(location)"
+          @click="$emit('done',{input,selectedDistance})"
         >Confirm</button>
       </div>
     </div>
@@ -34,19 +43,32 @@ export default {
   components: { Autocomplete },
   data () {
     return {
-      location: '',
-      showModal: false
+      input: '',
+      selectedDistance: 100,
+      distances: [5, 10, 20, 50, 100, 250, 500]
     }
   },
   mounted () {
     // Check for Geolocation API
     if ('geolocation' in navigator) {
-      /* geolocation is available */
     } else {
-      /* geolocation IS NOT available */
       document.querySelector('.geolocation-btn').setAttribute('style', 'visibility: hidden')
     }
 
+    if (this.location !== '') {
+      this.input = this.location
+    }
+    // Set dropdown values
+    let dropdown = document.querySelector('#distances')
+    this.distances.forEach((element) => {
+      let option = document.createElement('option')
+      option.value = element
+      option.innerHTML = element
+      if (option.value === this.userDistance) {
+        option.selected = true
+      }
+      dropdown.appendChild(option)
+    })
     // Handle Enter key press
     let input = document.querySelector('.location-input')
     input.addEventListener('keyup', function (event) {
@@ -58,10 +80,16 @@ export default {
   methods: {
     ...mapActions(['setUserLocation', 'getGeocode', 'getAutocomplete']),
     locationSelected (selected) {
-      this.location = selected
+      this.input = selected
+    },
+    distanceSelected () {
+      let dropdown = document.querySelector('#distances')
+      this.selectedDistance = this.distances[dropdown.selectedIndex]
     }
   },
   computed: mapState({
+    location: state => state.userLocation,
+    userDistance: state => state.userDistance,
     suggestions: state => state.locationSuggestions
   })
 }
