@@ -25,11 +25,15 @@
 <script>
 export default {
   props: {
-    suggestions: Array
+    suggestions: Array,
+    location: {
+      type: String,
+      default: ''
+    }
   },
   data () {
     return {
-      input: '',
+      input: this.location,
       showSuggestions: false
     }
   },

@@ -5,7 +5,7 @@
       class="location-modal"
       v-if="this.userLocation === ''"
     >
-      <LocationModal />
+      <LocationModal v-on:done="updateLocation" />
     </div>
 
     <h2 v-if="!loading">What kind of pet are you looking for?</h2>
@@ -33,15 +33,20 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import Loading from '../components/Loading'
 import LocationModal from '../components/LocationModal'
 
 export default {
   components: { Loading, LocationModal },
   methods: {
+    ...mapActions(['setUserLocation', 'setUserDistance']),
     petSelected (category) {
       this.$router.push('/pets/categories/' + category.slug + '/1')
+    },
+    updateLocation (update) {
+      this.setUserLocation(update.input)
+      this.setUserDistance(update.selectedDistance)
     }
   },
   computed: mapState({
