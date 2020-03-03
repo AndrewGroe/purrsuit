@@ -13,10 +13,11 @@ A demo can be found at https://purrsuit.netlify.com/
 * Netlify Functions (AWS Lambda)
   * Netlify CLI (run cloud functions locally)
 * Axios for AJAX requests
-  * Petfinder API
-  * GCP
-      * Geocode API
-      * Places API (Coming Soon!)
+* Petfinder API
+* [Google Maps Services](https://github.com/googlemaps/google-maps-services-js)
+* GCP
+    * Geocode API
+    * Places Autocomplete API
 * SASS
 * Responsive Design
   * Flexbox
