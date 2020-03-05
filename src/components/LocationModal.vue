@@ -68,6 +68,7 @@ export default {
         option.selected = true
       }
       dropdown.appendChild(option)
+      this.selectedDistance = this.userDistance
     })
     // Handle Enter key press
     let input = document.querySelector('.location-input')
