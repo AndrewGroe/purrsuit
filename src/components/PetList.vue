@@ -3,19 +3,25 @@
     <transition name="component-fade">
       <div v-if='pets.length'>
         <div class="page-nav">
-          <div>Category: {{categoryTitle}}</div>
-          <div>Location: {{location}}</div>
-          <div>Distance: {{userDistance}} miles</div>
+          <div class="location">
+            <div class="location-info">
+              <div class="location-item">Category: {{categoryTitle}}</div>
+              <div class="location-item">Location: {{location}}</div>
+              <div class="location-item">Distance: {{userDistance}} miles</div>
+            </div>
 
-          <icon-base
-            class="gear-icon"
-            icon-name="change"
-            width="24"
-            height="24"
-            v-on:clicked="showModal = true"
-          >
-            <icon-settings />
-          </icon-base>
+            <div class="change-location">
+              <icon-base
+                class="gear-icon"
+                icon-name="change"
+                width="24"
+                height="24"
+                v-on:clicked="showModal = true"
+              >
+                <icon-settings />
+              </icon-base>
+            </div>
+          </div>
 
           <div class="pagination">
             <button
@@ -138,11 +144,50 @@ export default {
   }
 }
 
+.location {
+  padding: 1% 0;
+  background-color: $dark-blue;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row nowrap;
+}
+.location-info {
+  padding: 0 1%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-flow: row;
+}
+
+.location-item {
+  margin: 0 8px;
+}
+
 .gear-icon {
+  width: 32px;
+  height: 32px;
   cursor: pointer;
   transition: all 800ms;
   &:hover {
     color: $light-green;
+  }
+}
+
+// Media Queries
+@media (max-width: 700px) {
+  .location {
+    justify-content: center;
+  }
+
+  .location-info {
+    flex-flow: column;
+  }
+
+  .gear-icon {
+    width: 48px;
+    height: 48px;
   }
 }
 </style>
