@@ -13,6 +13,7 @@ const routes = [
   },
   {
     path: '/pets',
+    redirect: '/pets/categories',
     name: 'pets',
     props: true,
     component: () => import('../views/Pets.vue'),
