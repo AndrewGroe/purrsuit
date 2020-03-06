@@ -4,6 +4,8 @@
       <div v-if='pets.length'>
         <div class="page-nav">
           <div class="location">
+            <router-link to="/pets/categories">&lt;&lt; back</router-link>
+
             <div class="location__info">
               <div class="location__item">Category: {{categoryTitle}}</div>
               <div class="location__item">Location: {{location}}</div>
@@ -127,11 +129,20 @@ export default {
 <style scoped lang="scss">
 @import "@/styles/_vars.scss";
 .pet__list {
+  transition: all 800ms;
   width: 100%;
   display: flex;
   flex-flow: row wrap;
   align-items: center;
   justify-content: center;
+}
+
+.router-link-active {
+  color: white;
+
+  &:hover {
+    color: $light-green;
+  }
 }
 
 .pagination {
@@ -150,7 +161,7 @@ export default {
   color: white;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   flex-flow: row nowrap;
 
   &__info {
@@ -169,7 +180,7 @@ export default {
   width: 32px;
   height: 32px;
   cursor: pointer;
-  transition: all 800ms;
+
   &:hover {
     color: $light-green;
   }
@@ -178,7 +189,7 @@ export default {
 // Media Queries
 @media (max-width: 700px) {
   .location {
-    justify-content: center;
+    justify-content: space-around;
 
     &__info {
       flex-flow: column;
