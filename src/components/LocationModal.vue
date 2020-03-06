@@ -18,7 +18,7 @@
           icon-name="find me"
           width="24"
           height="24"
-          @click="getGeocode"
+          v-on:clicked="getGeocode"
         >
           <icon-location />
         </icon-base>
