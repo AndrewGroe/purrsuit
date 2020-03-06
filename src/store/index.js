@@ -101,7 +101,7 @@ export default new Vuex.Store({
       if (context.state.userLocation === '' && localStorage.location) {
         context.commit('setUserLocation', localStorage.location)
       }
-      if (context.state.userDistance !== localStorage.distance) {
+      if (context.state.userDistance === 100 && localStorage.distance) {
         context.commit('setUserDistance', localStorage.distance)
       }
       if (context.state.categories.length) {
@@ -121,7 +121,7 @@ export default new Vuex.Store({
       if (context.state.userLocation === '' && localStorage.location) {
         context.commit('setUserLocation', localStorage.location)
       }
-      if (context.state.userDistance !== localStorage.distance) {
+      if (context.state.userDistance === 100 && localStorage.distance) {
         context.commit('setUserDistance', localStorage.distance)
       }
       return axios
