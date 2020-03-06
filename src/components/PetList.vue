@@ -76,7 +76,7 @@
 
 import { mapState, mapActions } from 'vuex'
 import Pet from './Pet.vue'
-import Loading from './Loading.vue'
+import Loading from './ui/Loading.vue'
 import LocationModal from './LocationModal.vue'
 import IconBase from './icons/IconBase.vue'
 import IconSettings from './icons/IconSettings.vue'

@@ -34,7 +34,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import Loading from '../components/Loading'
+import Loading from '../components/ui/Loading'
 import LocationModal from '../components/LocationModal'
 
 export default {
