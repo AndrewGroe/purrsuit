@@ -25,7 +25,7 @@ export default {
     let element = document.querySelector('.home')
     let home = element.getBoundingClientRect()
     // push bg image down by offset
-    let bgImage = document.querySelector('.bg-image')
+    let bgImage = document.querySelector('.bg__image')
     bgImage.setAttribute('style', `height:calc(100vh - ${home.top}px)`)
   }
 }
