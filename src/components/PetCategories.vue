@@ -10,13 +10,13 @@
 
     <h2 v-if="!loading">What kind of pet are you looking for?</h2>
     <div
-      class="pet-categories"
+      class="categories"
       v-if="!loading"
     >
       <div
         v-for="category in categories"
         :key='category.id'
-        class="pet"
+        class="categories__item"
         @click="petSelected(category)"
       >
         <div>
@@ -62,25 +62,26 @@ export default {
 * {
   transition: 0.5s ease;
 }
-.pet-categories {
+.categories {
   width: 100%;
   display: flex;
   flex-flow: row wrap;
   align-items: center;
   justify-content: center;
-}
-.pet {
-  color: #ecf0f1;
-  width: 200px;
-  height: 180px;
-  border-radius: 4%;
-  background: $dark-blue;
-  margin: 3%;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
 
-  &:hover {
-    background: $light-green;
+  &__item {
+    color: #ecf0f1;
+    width: 200px;
+    height: 180px;
+    border-radius: 4%;
+    background: $dark-blue;
+    margin: 3%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+
+    &:hover {
+      background: $light-green;
+    }
   }
 }
 </style>

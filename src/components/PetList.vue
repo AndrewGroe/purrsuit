@@ -4,10 +4,10 @@
       <div v-if='pets.length'>
         <div class="page-nav">
           <div class="location">
-            <div class="location-info">
-              <div class="location-item">Category: {{categoryTitle}}</div>
-              <div class="location-item">Location: {{location}}</div>
-              <div class="location-item">Distance: {{userDistance}} miles</div>
+            <div class="location__info">
+              <div class="location__item">Category: {{categoryTitle}}</div>
+              <div class="location__item">Location: {{location}}</div>
+              <div class="location__item">Distance: {{userDistance}} miles</div>
             </div>
 
             <div class="change-location">
@@ -35,7 +35,7 @@
             >Next</button>
           </div>
         </div>
-        <div class="pet--list">
+        <div class="pet__list">
           <pet
             v-for="pet in pets"
             :key="pet.id"
@@ -126,7 +126,7 @@ export default {
 
 <style scoped lang="scss">
 @import "@/styles/_vars.scss";
-.pet--list {
+.pet__list {
   width: 100%;
   display: flex;
   flex-flow: row wrap;
@@ -152,19 +152,19 @@ export default {
   align-items: center;
   justify-content: center;
   flex-flow: row nowrap;
-}
-.location-info {
-  padding: 0 1%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-flow: row;
-}
 
-.location-item {
-  margin: 0 8px;
-}
+  &__info {
+    padding: 0 1%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-flow: row;
+  }
 
+  &__item {
+    margin: 0 8px;
+  }
+}
 .gear-icon {
   width: 32px;
   height: 32px;
@@ -179,12 +179,11 @@ export default {
 @media (max-width: 700px) {
   .location {
     justify-content: center;
-  }
 
-  .location-info {
-    flex-flow: column;
+    &__info {
+      flex-flow: column;
+    }
   }
-
   .gear-icon {
     width: 48px;
     height: 48px;

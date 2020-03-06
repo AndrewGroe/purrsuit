@@ -2,16 +2,16 @@
   <div class="home">
     <div class="bg">
       <img
-        class="bg-image"
+        class="bg__image"
         src="../../public/dog.svg"
       />
     </div>
 
     <div class="cta">
       <h2>Welcome to Purrsuit!</h2>
-      <p class="subtitle">powered by Petfinder&#169;</p>
+      <p class="cta__subtitle">powered by Petfinder&#169;</p>
       <router-link to="/pets/categories">
-        <button class="cta-btn">Get Started</button>
+        <button class="cta__btn">Get Started</button>
       </router-link>
     </div>
 
@@ -45,43 +45,43 @@ export default {
 .bg {
   flex: 1 1 auto;
   align-self: flex-start;
-}
-.bg-image {
-  max-width: 100%;
+
+  &__image {
+    max-width: 100%;
+  }
 }
 
 .cta {
   flex: 0 1 auto;
   margin-right: 4%;
   align-self: center;
-}
 
-.cta-btn {
-  font-size: 2rem;
-  color: $dark-blue;
-  background-color: $light-green;
-  border-radius: 35px;
-  border: 1px solid $dark-blue;
-  cursor: pointer;
+  &__btn {
+    font-size: 2rem;
+    color: $dark-blue;
+    background-color: $light-green;
+    border-radius: 35px;
+    border: 1px solid $dark-blue;
+    cursor: pointer;
 
-  &:hover {
-    background-color: $dark-blue;
-    color: white;
-    border: 1px solid $light-green;
+    &:hover {
+      background-color: $dark-blue;
+      color: white;
+      border: 1px solid $light-green;
+    }
+  }
+
+  &__subtitle {
+    font-style: italic;
   }
 }
-
-.subtitle {
-  font-style: italic;
-}
-
 // Media Queries
 @media (max-width: 700px) {
   .home {
     display: block;
   }
 
-  .bg-image {
+  .bg__image {
     width: 100%;
   }
 

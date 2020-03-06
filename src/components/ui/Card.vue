@@ -1,10 +1,10 @@
 <template>
   <div class="card">
-    <div class="thumbnail">
+    <div class="card__thumbnail">
       <img :src="imgSrc" />
     </div>
-    <div class="overlay">
-      <div class="content">
+    <div class="card__overlay">
+      <div class="card__content">
         <slot></slot>
       </div>
     </div>
@@ -37,39 +37,40 @@ export default {
   overflow: hidden;
   background: $light-green;
 
-  &:hover .overlay {
+  &:hover &__overlay {
     height: 100%;
     opacity: 1;
   }
   &:hover img {
     opacity: 0.5;
   }
-}
-img {
-  background-color: $dark-blue;
-  opacity: 1;
-  position: absolute;
-  display: block;
-  top: 50%;
-  left: 50%;
-  max-height: 100%;
-  min-width: 100%;
-  transform: translate(-50%, -50%);
-}
-.overlay {
-  opacity: 0;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  overflow: hidden;
-  width: 100%;
-  height: 0;
-}
-.content {
-  width: 100%;
-  color: white;
-  opacity: 1;
-  padding-top: 8%;
+
+  img {
+    background-color: $dark-blue;
+    opacity: 1;
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    max-height: 100%;
+    min-width: 100%;
+    transform: translate(-50%, -50%);
+  }
+  &__overlay {
+    opacity: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+  }
+  &__content {
+    width: 100%;
+    color: white;
+    opacity: 1;
+    padding-top: 8%;
+  }
 }
 </style>>

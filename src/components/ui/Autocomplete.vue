@@ -1,17 +1,17 @@
 <template>
   <div class="autocomplete">
     <input
-      class="input"
+      class="autocomplete__input"
       v-model='input'
       placeholder="ex: Orlando, Florida"
       type="text"
     />
     <div
       v-if="suggestions && showSuggestions"
-      class="suggestions"
+      class="autocomplete__suggestions"
     >
       <div
-        class="suggestion-item"
+        class="suggestions__item"
         v-for="suggestion in suggestions"
         :key="suggestion.id"
         @click="suggestionSelected(suggestion)"
@@ -53,7 +53,7 @@ export default {
     }
   },
   mounted () {
-    const textInput = document.querySelector('.input')
+    const textInput = document.querySelector('.autocomplete__input')
     textInput.addEventListener('input', this.userInput)
   }
 }
@@ -63,22 +63,24 @@ export default {
 .autocomplete {
   position: relative;
   display: inline-block;
-}
-.suggestions {
-  position: absolute;
-  z-index: 1;
-  top: 100%;
-  left: 0;
-  right: 0;
-}
-.suggestion-item {
-  padding: 10px;
-  cursor: pointer;
-  background-color: #fff;
-  border-bottom: 1px solid #d4d4d4;
 
-  &:hover {
-    background-color: #e9e9e9;
+  &__suggestions {
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    .suggestions__item {
+      padding: 10px;
+      cursor: pointer;
+      background-color: #fff;
+      border-bottom: 1px solid #d4d4d4;
+
+      &:hover {
+        background-color: #e9e9e9;
+      }
+    }
   }
 }
 </style>

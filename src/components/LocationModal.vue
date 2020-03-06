@@ -1,11 +1,11 @@
 <template>
   <div class="modal">
-    <div class="modal-content">
+    <div class="modal__content">
       <h2>Location</h2>
       <p>In order to display pets near you, please enter your desired search location below.</p>
 
       <Autocomplete
-        class="location-input"
+        class="modal__input"
         :suggestions="suggestions"
         :location="location"
         v-on:get-suggestions="getAutocomplete"
@@ -25,7 +25,7 @@
       >
       </select>
 
-      <div class="modal-controls">
+      <div class="modal__controls">
         <button
           class="confirm-btn"
           @click="$emit('done',{input,selectedDistance})"
@@ -71,7 +71,7 @@ export default {
       this.selectedDistance = this.userDistance
     })
     // Handle Enter key press
-    let input = document.querySelector('.location-input')
+    let input = document.querySelector('.modal__input')
     input.addEventListener('keyup', function (event) {
       if (event.keyCode === 13) {
         document.querySelector('.confirm-btn').click()
@@ -107,18 +107,18 @@ export default {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   transform: scale(1.1);
-}
-.modal-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: $bg-color;
-  padding: 1rem 1.5rem;
-  width: 24rem;
-  border-radius: 0.5rem;
-}
 
+  &__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $bg-color;
+    padding: 1rem 1.5rem;
+    width: 24rem;
+    border-radius: 0.5rem;
+  }
+}
 .confirm-btn {
   background-color: $light-green;
 }
