@@ -72,7 +72,8 @@ export default {
       let option = document.createElement('option')
       option.value = element
       option.innerHTML = element
-      if (option.value === this.userDistance) {
+
+      if (element === this.userDistance || option.value === this.userDistance) {
         option.selected = true
       }
       dropdown.appendChild(option)
