@@ -4,19 +4,25 @@
       <h2>Location</h2>
       <p>In order to display pets near you, please enter your desired search location below.</p>
 
-      <Autocomplete
-        class="modal__input"
-        :suggestions="suggestions"
-        :location="location"
-        v-on:get-suggestions="getAutocomplete"
-        v-on:suggestion-selected="locationSelected"
-      />
+      <div class="location">
+        <Autocomplete
+          class="location__input"
+          :suggestions="suggestions"
+          :location="location"
+          v-on:get-suggestions="getAutocomplete"
+          v-on:suggestion-selected="locationSelected"
+        />
 
-      <button
-        class="geolocation-btn"
-        @click="getGeocode"
-      >Find me</button>
-      <p>Valid inputs include city, state or postal code</p>
+        <icon-base
+          class="location__icon"
+          icon-name="find me"
+          width="24"
+          height="24"
+          @click="getGeocode"
+        >
+          <icon-location />
+        </icon-base>
+      </div>
 
       <label for="distances">Distance: </label>
       <select
@@ -39,8 +45,10 @@
 <script>
 import { mapActions, mapState } from 'vuex'
 import Autocomplete from './ui/Autocomplete'
+import IconBase from './icons/IconBase.vue'
+import IconLocation from './icons/IconLocation.vue'
 export default {
-  components: { Autocomplete },
+  components: { Autocomplete, IconBase, IconLocation },
   data () {
     return {
       input: '',
@@ -52,7 +60,7 @@ export default {
     // Check for Geolocation API
     if ('geolocation' in navigator) {
     } else {
-      document.querySelector('.geolocation-btn').setAttribute('style', 'visibility: hidden')
+      document.querySelector('.location__icon').setAttribute('style', 'visibility: hidden')
     }
 
     if (this.location !== '') {
@@ -71,7 +79,7 @@ export default {
       this.selectedDistance = this.userDistance
     })
     // Handle Enter key press
-    let input = document.querySelector('.modal__input')
+    let input = document.querySelector('.location__input')
     input.addEventListener('keyup', function (event) {
       if (event.keyCode === 13) {
         document.querySelector('.confirm-btn').click()
@@ -96,7 +104,7 @@ export default {
 }
 </script>
 
-<style lang='scss'>
+<style lang='scss' scoped>
 @import "@/styles/_vars.scss";
 
 .modal {
@@ -118,8 +126,24 @@ export default {
     width: 24rem;
     border-radius: 0.5rem;
   }
+
+  .location {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    margin: 2% 0;
+    &__icon {
+      :hover {
+        cursor: pointer;
+        transition: all 800ms;
+        color: $light-green;
+      }
+    }
+  }
 }
 .confirm-btn {
+  margin-top: 2%;
   background-color: $light-green;
 }
 </style>
