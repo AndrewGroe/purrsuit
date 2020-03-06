@@ -1,9 +1,12 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <div class="nav-content">
+    <div class="nav">
+      <div class="nav__content">
+        <div class="header">
+          <h1 class="header__title">Purrsuit</h1>
+          <span class="header__subtitle">find your next pet today</span>
+        </div>
 
-        <h1 class="site-title">Purrsuit</h1>
         <div class="router">
           <router-link
             to="/"
@@ -42,7 +45,7 @@ body {
   background-color: $bg-color;
 }
 
-#nav {
+.nav {
   width: 100%;
   background-color: $light-green;
 
@@ -56,16 +59,47 @@ body {
       text-decoration: underline;
     }
   }
-  .nav-content {
+  &__content {
     margin: 0 4%;
     display: flex;
     flex-wrap: nowrap;
     align-items: baseline;
     justify-content: space-between;
+
+    .header {
+      display: flex;
+      align-items: baseline;
+
+      &__title {
+        color: #fff;
+        font-style: bold;
+      }
+      &__subtitle {
+        margin-left: 4%;
+        font-style: italic;
+        white-space: nowrap;
+        font-weight: 600;
+      }
+    }
   }
-  h1 {
-    color: #fff;
-    font-style: bold;
+}
+
+// Media Queries
+@media (max-width: 700px) {
+  .header {
+    display: flex;
+    flex-flow: column nowrap;
+    &__title {
+      color: #fff;
+      font-style: bold;
+      margin-bottom: 0;
+    }
+    &__subtitle {
+      font-size: 0.8rem;
+      font-style: italic;
+      white-space: nowrap;
+      font-weight: 600;
+    }
   }
 }
 
