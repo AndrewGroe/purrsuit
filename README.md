@@ -18,7 +18,7 @@ A demo can be found at https://purrsuit.netlify.com/
 * GCP
     * Geocode API
     * Places Autocomplete API
-* SASS
+* SASS & BEM CSS
 * Responsive Design
   * Flexbox
   * Media Queries
