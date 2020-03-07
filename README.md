@@ -1,5 +1,7 @@
-# Purrsuit
-#### Find pets available for adoption near you.
+# Purrsuit - Find adoptable pets near you.
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ea74f230-3795-4c15-9e58-0d3064230a29/deploy-status)](https://app.netlify.com/sites/purrsuit/deploys)
+
 
 This is a sample application showcasing Netlify Functions. They are primarily used to rapidly scaffold out an internal API for the purpose of retreiving data from an external API. In this context, they're connecting to the PetFinder API and GCP via cloud functions, which has the added benefit of hiding API keys from the client and this repository.
 
