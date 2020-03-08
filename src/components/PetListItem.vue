@@ -1,7 +1,7 @@
 <template>
   <div class="pet">
     <div v-if="pet.photos && pet.photos.length">
-      <card :imgSrc="pet.photos[0].large">
+      <CardLayout :imgSrc="pet.photos[0].large">
 
         <h3 class="pet__name">{{ pet.name }}</h3>
         <div class="pet__species">{{ pet.species }}</div>
@@ -13,11 +13,11 @@
           target="_blank"
           :href=pet.url
         >Learn More</a>
-      </card>
+      </CardLayout>
 
     </div>
     <div v-else>
-      <card imgSrc="https://cdn.pixabay.com/photo/2014/04/03/00/42/footprints-309158_960_720.png">
+      <CardLayout imgSrc="https://cdn.pixabay.com/photo/2014/04/03/00/42/footprints-309158_960_720.png">
 
         <h3 class="pet__name">{{ pet.name }}</h3>
         <div class="pet__species">{{ pet.species }}</div>
@@ -29,7 +29,7 @@
           target="_blank"
           :href=pet.url
         >Learn More</a>
-      </card>
+      </CardLayout>
 
     </div>
 
@@ -38,9 +38,9 @@
 </template>
 
 <script>
-import Card from './ui/Card.vue'
+import CardLayout from './ui/CardLayout.vue'
 export default {
-  components: { Card },
+  components: { CardLayout },
   props: {
     pet: Object
   }

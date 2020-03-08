@@ -5,7 +5,7 @@
       <p>In order to display pets near you, please enter your desired search location below.</p>
 
       <div class="location">
-        <Autocomplete
+        <AutocompleteInput
           class="location__input"
           :suggestions="suggestions"
           :location="location"
@@ -44,11 +44,11 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import Autocomplete from './ui/Autocomplete'
+import AutocompleteInput from './ui/AutocompleteInput.vue'
 import IconBase from './icons/IconBase.vue'
 import IconLocation from './icons/IconLocation.vue'
 export default {
-  components: { Autocomplete, IconBase, IconLocation },
+  components: { AutocompleteInput, IconBase, IconLocation },
   data () {
     return {
       input: '',

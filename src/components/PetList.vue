@@ -38,7 +38,7 @@
           </div>
         </div>
         <div class="pet__list">
-          <pet
+          <PetListItem
             v-for="pet in pets"
             :key="pet.id"
             :pet="pet"
@@ -62,13 +62,13 @@
     <!-- Loading Spinner -->
     <transition name="component-fade">
       <div v-if="loading">
-        <loading />
+        <LoadingSpinner />
       </div>
     </transition>
 
     <transition name="component-fade">
       <div v-if="showModal">
-        <location-modal v-on:done="updateLocation" />
+        <LocationModal v-on:done="updateLocation" />
       </div>
     </transition>
   </div>
@@ -77,15 +77,15 @@
 <script>
 
 import { mapState, mapActions } from 'vuex'
-import Pet from './Pet.vue'
-import Loading from './ui/Loading.vue'
+import PetListItem from './PetListItem.vue'
+import LoadingSpinner from './ui/LoadingSpinner.vue'
 import LocationModal from './LocationModal.vue'
 import IconBase from './icons/IconBase.vue'
 import IconSettings from './icons/IconSettings.vue'
 
 export default {
   name: 'PetList',
-  components: { Pet, Loading, LocationModal, IconBase, IconSettings },
+  components: { PetListItem, LoadingSpinner, LocationModal, IconBase, IconSettings },
   data () {
     return {
       showModal: false

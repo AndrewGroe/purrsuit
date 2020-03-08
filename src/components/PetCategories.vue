@@ -27,18 +27,18 @@
 
     </div>
     <div v-else>
-      <loading msg='Fetching Available Pet Categories...' />
+      <LoadingSpinner msg='Fetching Available Pet Categories...' />
     </div>
   </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import Loading from '../components/ui/Loading'
-import LocationModal from '../components/LocationModal'
+import LoadingSpinner from '../components/ui/LoadingSpinner.vue'
+import LocationModal from '../components/LocationModal.vue'
 
 export default {
-  components: { Loading, LocationModal },
+  components: { LoadingSpinner, LocationModal },
   methods: {
     ...mapActions(['setUserLocation', 'setUserDistance']),
     petSelected (category) {
