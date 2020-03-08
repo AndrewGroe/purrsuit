@@ -6,6 +6,6 @@ status = 200
 [[headers]]
   for = "/*"
   [headers.values]
-    Content-Security-Policy = "default-src 'self'; img-src 'self' https://cdn.pixabay.com https://dl5zpyw5k3jeb.cloudfront.net; object-src 'none'; script-src 'self'; style-src 'self'"
+    Content-Security-Policy = "default-src 'self'; font-src 'self' data:; img-src 'self' https://cdn.pixabay.com https://dl5zpyw5k3jeb.cloudfront.net; object-src 'none'; script-src 'self'; style-src 'self'"
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
