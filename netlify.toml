@@ -9,3 +9,4 @@ status = 200
     Content-Security-Policy = "default-src 'self'; font-src 'self' data:; img-src 'self' https://cdn.pixabay.com https://dl5zpyw5k3jeb.cloudfront.net; object-src 'none'; script-src 'self'; style-src 'self'"
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
