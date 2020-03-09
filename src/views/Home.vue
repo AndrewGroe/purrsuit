@@ -18,19 +18,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  mounted () {
-    // get height offset from navbar
-    let element = document.querySelector('.home')
-    let home = element.getBoundingClientRect()
-    // push bg image down by offset
-    let bgImage = document.querySelector('.bg__image')
-    bgImage.setAttribute('style', `height:calc(100vh - ${home.top}px)`)
-  }
-}
-</script>
-
 <style lang="scss" scoped>
 @import "@/styles/_vars.scss";
 
@@ -47,7 +34,9 @@ export default {
   align-self: flex-start;
 
   &__image {
+    padding-top: 1%;
     max-width: 100%;
+    height: calc(100vh - 92px);
   }
 }
 
