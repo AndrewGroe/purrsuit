@@ -7,6 +7,7 @@
 
 <script>
 export default {
+  name: 'LoadingSpinner',
   props: {
     msg: String
   }
