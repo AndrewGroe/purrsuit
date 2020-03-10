@@ -9,8 +9,8 @@ A demo can be found at https://purrsuit.netlify.com/
 
 #### Features include:
 * Vue.js
-* Vuex
-* Vue Router
+  * Vuex
+  * Vue Router
 * Serverless Architecture
 * Netlify Functions (AWS Lambda)
   * Netlify CLI (run cloud functions locally)
@@ -20,6 +20,7 @@ A demo can be found at https://purrsuit.netlify.com/
 * GCP
     * Geocode API
     * Places Autocomplete API
+* Unit Tests (Jest)
 * SASS & BEM CSS
 * Responsive Design
   * Flexbox
