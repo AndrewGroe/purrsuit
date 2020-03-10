@@ -1,60 +1,76 @@
 <template>
   <div>
     <transition name="component-fade">
-      <div v-if='pets.length'>
-        <div class="page-nav">
-          <div class="location">
-            <router-link to="/pets/categories">&lt;&lt; back</router-link>
+      <div>
+        <div
+          v-if="!loading"
+          class="location"
+        >
+          <router-link to="/pets/categories">&lt;&lt; back</router-link>
 
-            <div class="location__info">
-              <div class="location__item">Category: {{categoryTitle}}</div>
-              <div class="location__item">Location: {{location}}</div>
-              <div class="location__item">Distance: {{userDistance}} miles</div>
-            </div>
-
-            <div class="change-location">
-              <icon-base
-                class="gear-icon"
-                icon-name="change"
-                width="24"
-                height="24"
-                v-on:clicked="showModal = true"
-              >
-                <icon-settings />
-              </icon-base>
-            </div>
+          <div class="location__info">
+            <div class="location__item">Category: {{categoryTitle}}</div>
+            <div class="location__item">Location: {{location}}</div>
+            <div class="location__item">Distance: {{userDistance}} miles</div>
           </div>
 
-          <div class="pagination">
-            <button
-              v-if="page != 1"
-              @click="paginate('previous')"
-            >Previous</button>
-            page {{page}}/{{totalPages}}
-            <button
-              v-if="page != totalPages"
-              @click="paginate('next')"
-            >Next</button>
+          <div class="change-location">
+            <icon-base
+              class="gear-icon"
+              icon-name="change"
+              width="24"
+              height="24"
+              v-on:clicked="showModal = true"
+            >
+              <icon-settings />
+            </icon-base>
           </div>
         </div>
-        <div class="pet__list">
-          <PetListItem
-            v-for="pet in pets"
-            :key="pet.id"
-            :pet="pet"
-          />
+
+        <div
+          v-if="error"
+          class="error"
+        >
+          <div class="error__msg">
+            <div>No results found.</div>
+            <div>Please try widening search area or changing locations.</div>
+          </div>
         </div>
-        <div class="page-nav">
-          <div class="pagination">
-            <button
-              v-if="page != 1"
-              @click="paginate('previous')"
-            >Previous</button>
-            page {{page}}/{{totalPages}}
-            <button
-              v-if="page != totalPages"
-              @click="paginate('next')"
-            >Next</button>
+
+        <div v-if='pets.length'>
+          <div class="page-nav">
+
+            <div class="pagination">
+              <button
+                v-if="page != 1"
+                @click="paginate('previous')"
+              >Previous</button>
+              page {{page}}/{{totalPages}}
+              <button
+                v-if="page != totalPages"
+                @click="paginate('next')"
+              >Next</button>
+            </div>
+          </div>
+          <div class="pet__list">
+            <PetListItem
+              v-for="pet in pets"
+              :key="pet.id"
+              :pet="pet"
+            />
+          </div>
+          <div class="page-nav">
+            <div class="pagination">
+              <button
+                v-if="page != 1"
+                @click="paginate('previous')"
+              >Previous</button>
+              page {{page}}/{{totalPages}}
+              <button
+                v-if="page != totalPages"
+                @click="paginate('next')"
+              >Next</button>
+            </div>
           </div>
         </div>
       </div>
@@ -116,7 +132,8 @@ export default {
     pets: state => state.pets,
     loading: state => state.loading,
     location: state => state.userLocation,
-    userDistance: state => state.userDistance
+    userDistance: state => state.userDistance,
+    error: state => state.error
   }),
   beforeRouteUpdate (to, from, next) {
     this.setCurrentPage(to.params.page)
@@ -184,6 +201,10 @@ export default {
   &:hover {
     color: $light-green;
   }
+}
+
+.error {
+  margin-top: 30vh;
 }
 
 // Media Queries

@@ -24,7 +24,8 @@ export default new Vuex.Store({
     totalPages: 0,
     userLocation: '',
     userDistance: 100,
-    locationSuggestions: []
+    locationSuggestions: [],
+    error: false
   },
 
   mutations: {
@@ -57,6 +58,9 @@ export default new Vuex.Store({
     },
     setUserDistance (state, value) {
       state.userDistance = value
+    },
+    setError (state, value) {
+      state.error = value
     }
   },
 
@@ -117,6 +121,7 @@ export default new Vuex.Store({
     },
     getPetsByCategory (context) {
       context.commit('setLoading', true)
+      context.commit('setError', false)
       context.commit('setPets', [])
       if (context.state.userLocation === '' && localStorage.location) {
         context.commit('setUserLocation', localStorage.location)
@@ -137,7 +142,10 @@ export default new Vuex.Store({
           if (context.state.totalPages !== response.data.pagination.total_pages) {
             context.dispatch('setTotalPages', response.data.pagination.total_pages)
           }
-          context.commit('setPets', response.data.animals)
+          if (response.data.animals.length) {
+            context.commit('setPets', response.data.animals)
+          } else context.commit('setError', true)
+
           context.commit('setLoading', false)
         }
         )
