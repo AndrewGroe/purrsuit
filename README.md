@@ -26,3 +26,45 @@ A demo can be found at https://purrsuit.netlify.com/
   * Flexbox
   * Media Queries
 * Pagination
+
+## Getting Started
+
+### Prerequisites
+
+Clone this repo and link it to your Netlify account.
+
+You'll need to have an API key for both Google Cloud Platform (Geocode API & Places Autocomplete) and the Petfinder API (you need both the ID and the SECRET).
+
+Then add YOUR keys to your environment variables on Netlify's Dashboard (purrsuit > Settings > Build & deploy > Environment > Environment Variables). Create variables with the following names and paste in YOUR keys. You can find more information about Netlify's environment variables [here](https://docs.netlify.com/configure-builds/environment-variables/).
+```
+GCP_KEY
+PETFINDER_CLIENT_ID
+PETFINDER_CLIENT_SECRET
+```
+
+### Installing
+
+Install project dependencies
+```console
+npm install
+```
+You'll need the Netlify CLI in order to run the cloud functions locally
+```console
+npm install netlify-cli -g
+```
+
+Next, link your local project with the one stored on Netlify's servers. Without this step, netlify-cli won't know where to get the environment variables you previously set from. More information about linking sites can be found [here](https://docs.netlify.com/cli/get-started/#link-and-unlink-sites).
+```console
+netlify link
+```
+
+Then run the app
+```console
+netlify dev
+```
+
+## Running Tests
+Unit tests can be run using the following command
+```console
+npm run test:unit
+```
