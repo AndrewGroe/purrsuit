@@ -40,6 +40,7 @@
 <script>
 import CardLayout from './ui/CardLayout.vue'
 export default {
+  name: 'PetListItem',
   components: { CardLayout },
   props: {
     pet: Object

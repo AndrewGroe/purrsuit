@@ -49,6 +49,7 @@ import IconBase from './icons/IconBase.vue'
 import IconLocation from './icons/IconLocation.vue'
 export default {
   components: { AutocompleteInput, IconBase, IconLocation },
+  name: 'LocationModal',
   data () {
     return {
       input: '',
