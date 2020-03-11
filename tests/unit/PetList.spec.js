@@ -31,10 +31,10 @@ describe('PetList.vue', () => {
 })
 
 describe('PetList.vue', () => {
-  it('renders a location modal', () => {
+  it('renders a location modal', async () => {
     const wrapper = factory({ pets: [], loading: false })
     wrapper.setData({ showModal: true })
-
+    await wrapper.vm.$nextTick()
     expect(wrapper.find({ name: 'LocationModal' }).exists()).toBe(true)
   })
 })
