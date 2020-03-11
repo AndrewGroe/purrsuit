@@ -13,15 +13,15 @@
           v-on:suggestion-selected="locationSelected"
         />
 
-        <icon-base
+        <IconBase
           class="location__icon"
           icon-name="find me"
           width="24"
           height="24"
           v-on:clicked="getGeocode"
         >
-          <icon-location />
-        </icon-base>
+          <IconLocation />
+        </IconBase>
       </div>
 
       <label for="distances">Distance: </label>
@@ -82,7 +82,7 @@ export default {
     })
     // Handle Enter key press
     let input = document.querySelector('.location__input')
-    input.addEventListener('keyup', function (event) {
+    input.addEventListener('keydown', function (event) {
       if (event.keyCode === 13) {
         document.querySelector('.confirm-btn').click()
       }
