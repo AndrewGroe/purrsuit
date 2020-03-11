@@ -38,6 +38,7 @@ import LoadingSpinner from '../components/ui/LoadingSpinner.vue'
 import LocationModal from '../components/LocationModal.vue'
 
 export default {
+  name: 'PetCategories',
   components: { LoadingSpinner, LocationModal },
   methods: {
     ...mapActions(['setUserLocation', 'setUserDistance']),
