@@ -1,7 +1,7 @@
 <template>
   <div class="loading">
     <div class="loader"></div>
-    <h2>{{msg}}</h2>
+    <h2 class="loader__msg">{{msg}}</h2>
   </div>
 </template>
 
