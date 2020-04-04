@@ -73,11 +73,19 @@ exports.handler = async function (event, context) {
     userToken = await auth()
 
     let response
-    if (event.queryStringParameters.pets === 'types') {
-      response = await getPetTypes(userToken)
-    } else if (event.queryStringParameters.task === 'breeds') {
-      response = await getBreedsByType(userToken, event.queryStringParameters)
-    } else response = await getPetsByType(userToken, event.queryStringParameters)
+    let params = event.queryStringParameters
+
+    switch (params.task) {
+      case 'types':
+        response = await getPetTypes(userToken)
+        break
+      case 'breeds':
+        response = await getBreedsByType(userToken, params)
+        break
+      case 'pets':
+        response = await getPetsByType(userToken, params)
+        break
+    }
 
     return {
       statusCode: 200,
