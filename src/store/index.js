@@ -17,6 +17,7 @@ export default new Vuex.Store({
   state: {
     loading: true,
     categories: [],
+    breeds: [],
     pets: [],
     currentCategory: '',
     currentPageTitle: '',
@@ -34,6 +35,9 @@ export default new Vuex.Store({
     },
     setCategories (state, returnedCategories) {
       state.categories = returnedCategories
+    },
+    setBreeds (state, value) {
+      state.breeds = value
     },
     setPets (state, returnedPets) {
       state.pets = returnedPets
@@ -119,9 +123,28 @@ export default new Vuex.Store({
           })
       }
     },
+    getBreedsByCategory (context) {
+      context.commit('setLoading', true)
+      context.commit('setError', false)
+      context.commit('setBreeds', [])
+
+      return axios
+        .get('/.netlify/functions/petfinder', {
+          params: {
+            task: 'breeds',
+            pets: context.state.currentCategory
+          }
+        })
+        .then((response) => {
+          context.commit('setBreeds', response.data.breeds)
+          context.commit('setLoading', false)
+        }
+        )
+    },
     getPetsByCategory (context) {
       context.commit('setLoading', true)
       context.commit('setError', false)
+      context.commit('setBreeds', [])
       context.commit('setPets', [])
       if (context.state.userLocation === '' && localStorage.location) {
         context.commit('setUserLocation', localStorage.location)
