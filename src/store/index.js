@@ -116,7 +116,11 @@ export default new Vuex.Store({
         context.commit('setLoading', false)
       } else {
         return axios
-          .get('/.netlify/functions/petfinder?pets=types')
+          .get('/.netlify/functions/petfinder', {
+            params: {
+              task: 'types'
+            }
+          })
           .then((response) => {
             context.commit('setCategories', response.data)
             context.commit('setLoading', false)
@@ -155,6 +159,7 @@ export default new Vuex.Store({
       return axios
         .get('/.netlify/functions/petfinder', {
           params: {
+            task: 'pets',
             pets: context.state.currentCategory,
             location: context.state.userLocation,
             distance: context.state.userDistance,
